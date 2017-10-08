@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>jQuery | 前方高能</title>
+  <title>npm and webpack | 前方高能</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##jQuery 能做什么？ jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。jQuery是一个JavaScript函数库，可以方便地：  选择dom元素 dom操作 事件处理 特效处理 ajax 链式操作">
-<meta name="keywords" content="JavaScript">
+  <meta name="description" content="如何全局安装一个 node 应用? 全局安装 ：npm install -g packageName  package会被下载到到特定的系统目录下( /usr/local/lib/node_modules/)，安装的package能够在所有目录下使用。">
+<meta name="keywords" content="npm webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery">
-<meta property="og:url" content="http://yoursite.com/2017/10/09/jQuery/index.html">
+<meta property="og:title" content="npm and webpack">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/npm-and-webpack/index.html">
 <meta property="og:site_name" content="前方高能">
-<meta property="og:description" content="##jQuery 能做什么？ jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。jQuery是一个JavaScript函数库，可以方便地：  选择dom元素 dom操作 事件处理 特效处理 ajax 链式操作">
-<meta property="og:updated_time" content="2017-10-08T20:22:56.000Z">
+<meta property="og:description" content="如何全局安装一个 node 应用? 全局安装 ：npm install -g packageName  package会被下载到到特定的系统目录下( /usr/local/lib/node_modules/)，安装的package能够在所有目录下使用。">
+<meta property="og:updated_time" content="2017-10-08T20:29:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery">
-<meta name="twitter:description" content="##jQuery 能做什么？ jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。jQuery是一个JavaScript函数库，可以方便地：  选择dom元素 dom操作 事件处理 特效处理 ajax 链式操作">
+<meta name="twitter:title" content="npm and webpack">
+<meta name="twitter:description" content="如何全局安装一个 node 应用? 全局安装 ：npm install -g packageName  package会被下载到到特定的系统目录下( /usr/local/lib/node_modules/)，安装的package能够在所有目录下使用。">
   
     <link rel="alternative" href="/atom.xml" title="前方高能" type="application/atom+xml">
   
@@ -146,103 +146,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jQuery" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-npm-and-webpack" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      jQuery
+      npm and webpack
     </h1>
   
 
         
-        <a href="/myBlog/2017/10/09/jQuery/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:46:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+        <a href="/myBlog/2017/10/09/npm-and-webpack/" class="archive-article-date">
+  	<time datetime="2017-10-08T20:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##jQuery 能做什么？</p>
-<p>jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。<br>jQuery是一个JavaScript函数库，可以方便地：</p>
-<ul>
-<li>选择dom元素</li>
-<li>dom操作</li>
-<li>事件处理</li>
-<li>特效处理</li>
-<li>ajax</li>
-<li>链式操作</li>
-</ul>
+        <h2 id="如何全局安装一个-node-应用"><a href="#如何全局安装一个-node-应用" class="headerlink" title="如何全局安装一个 node 应用?"></a>如何全局安装一个 node 应用?</h2><p> 全局安装 ：<code>npm install -g packageName</code></p>
+<p> <strong>package会被下载到到特定的系统目录下<code>( /usr/local/lib/node_modules/)</code>，安装的package能够在所有目录下使用。</strong></p>
 <a id="more"></a>
-<h2 id="jQuery-对象和-DOM-原生对象有什么区别？如何转化？"><a href="#jQuery-对象和-DOM-原生对象有什么区别？如何转化？" class="headerlink" title="jQuery 对象和 DOM 原生对象有什么区别？如何转化？"></a>jQuery 对象和 DOM 原生对象有什么区别？如何转化？</h2><p>####区别：</p>
-<p><strong>DOM对象 ：W3C标准用于操作文档的API。具体点来说就是指 HTML 文本中的所有被标签标记的东西 ，在js里可以用 getElementById 等传统的方法获得的对象，拥有原生对象的属性和方法。<br>jQuery对象：将DOM原生对象进行封装后得到的类数组对象</strong></p>
-<p>####注意：</p>
-<p>jQuery对象只能用jQuery对象的方法<br>DOM对象只能使用DOM对象的方法</p>
-<p>####转化：</p>
-<p>jquery提供了两种方法将一个jquery对象转换成一个DOM对象，[index]和get(index)。<br>使用$(DOM对象)就可以将DOM对象转化为jQuery对象</p>
-<p>##jQuery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//bind用于绑定事件，古老写法，不推荐</div><div class="line">$(selector).bind(event,[data],function)</div><div class="line"></div><div class="line">//unbind用于解绑事件，古老写法，不推荐</div><div class="line">$(selector).unbind(event,[function])</div><div class="line"></div><div class="line">//delegate用于事件代理，古老写法，不推荐</div><div class="line">$(selector).delegate(childSelector,event,[data],function)</div><div class="line"></div><div class="line">//live() 方法为被选元素附加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。不推荐使用</div><div class="line">$(selector).live(event,[data],function)</div></pre></td></tr></table></figure>
-<p><code>.on( events [,selector ] [,data ], handler(eventObject) )</code><br><strong>增加事件处理函数</strong></p>
-<ol>
-<li>events：事件类型和可选的命名空间，或仅仅是命名空间，比如”click”, “keydown.myPlugin”, 或者 “.myPlugin”，一个或多个</li>
-<li>selector：选择器，用于过滤出被选中的元素中能触发事件的后代元素。</li>
-<li>data：传递给事件处理函数的event.data<br>handler(eventObject)：事件被触发时的执行函数。若该函数只是要执行return false，该参数位置可以直接简写成 false</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 普通事件绑定，最简单的用法</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, function(e)&#123;</div><div class="line">    console.log(this); //点击的元素</div><div class="line">    console.log(e); // 事件，e.target 事件的对象</div><div class="line">&#125;);</div><div class="line">// 事件委托或者事件代理，想让div 下面所有的span绑定事件，可以把事件绑定到div上</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, &apos;span&apos;, function(e)&#123;</div><div class="line">    console.log(this);</div><div class="line">    console.log(e);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 可以在绑定的时候给事件处理程序传递一些参数</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, &#123;name: &apos;Byron&apos;, age: 24&#125;, function(e)&#123;</div><div class="line">    console.log(e.data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><strong>命名空间的作用：解绑事件时做一个区分</strong></p>
-<p>#click.hello事件解绑，但是click事件不受影响</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(&apos;.box&gt;ul&apos;).on(&apos;click&apos;,3,function(e)&#123;</div><div class="line">   console.log(e.data)</div><div class="line"> &#125;)</div><div class="line"> $(&apos;.box&gt;ul&apos;).on(&apos;click.hello&apos;,&apos;li&apos;,function()&#123;</div><div class="line">   console.log(this)</div><div class="line">   var str = $(this).text()</div><div class="line">   $(&apos;#wrap&apos;).text(str)</div><div class="line"> &#125;)</div><div class="line"> $(&apos;.box&gt;ul&apos;).off(&apos;click.hello&apos;)</div></pre></td></tr></table></figure>
-<p><code>.off( events [, selector ] [, handler ] )</code><br><strong>移除一个事件处理函数</strong></p>
-<h2 id="jQuery-如何展示-隐藏元素？"><a href="#jQuery-如何展示-隐藏元素？" class="headerlink" title="jQuery 如何展示/隐藏元素？"></a>jQuery 如何展示/隐藏元素？</h2><ul>
-<li>.hide([duration ] [,easing ] [,complete ])<br>隐藏元素，没有参数的时候等同于直接设置display:none属性</li>
-<li>.show( [duration ] [, easing ] [, complete ] )<br>用于显示元素，用法和hide类似</li>
-<li>.toggle( [duration ] [, easing ] [, complete ] )</li>
-</ul>
-<p>toggle是切换的意思，用来切换元素的隐藏、显示，类似于toggleClass<br>事件处理套件也有一个名为.toggle()方法。哪一个被调用取决于传递的参数的设置</p>
-<ol>
-<li>duration：动画持续多久</li>
-<li>easing：表示过渡使用哪种缓动函数，jQuery自身提供”linear” 和 “swing”</li>
-<li>complete：在动画完成时执行的函数,先完成动画，后执行函数</li>
-</ol>
-<h2 id="jQuery-动画如何使用？"><a href="#jQuery-动画如何使用？" class="headerlink" title="jQuery 动画如何使用？"></a>jQuery 动画如何使用？</h2><h4 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h4><ul>
-<li>.fadeIn( [duration ] [, easing ] [, complete ] )<br>通过淡入的方式显示匹配元素</li>
-<li>.fadeOut( [duration ] [, easing ] [, complete ] )<br>通过淡出的方式隐藏匹配元素</li>
-<li>.fadeTo( duration, opacity [, easing ] [, complete ] )<br>调整匹配元素的透明度，方法通过匹配元素的不透明度做动画效果</li>
-<li>.fadeToggle( [duration ] [, easing ] [, complete ] )</li>
-</ul>
-<h4 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h4><ul>
-<li>.slideDown( [duration ] [, easing ] [, complete ] )<br>用滑动动画显示一个匹配元素</li>
-<li>.slideUp( [duration ] [, easing ] [, complete ] )<br>用滑动动画隐藏一个匹配元素</li>
-<li>.slideToggle( [duration ] [, easing ] [, complete ] )<br>用滑动动画显示或隐藏一个匹配元素</li>
-</ul>
-<p>####自定义动画</p>
-<ul>
-<li>.animate( properties [, duration ] [, easing ] [, complete ] )<br>properties是一个CSS属性和值的对象,动画将根据这组对象移动。</li>
-</ul>
-<h2 id="如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？"><a href="#如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？" class="headerlink" title="如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？"></a>如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？</h2><ul>
-<li><p><code>html([string])</code><br>读写两用的方法，用于获取/修改元素的innerHTML</p>
+<h2 id="package-json-有什么作用？"><a href="#package-json-有什么作用？" class="headerlink" title="package.json 有什么作用？"></a>package.json 有什么作用？</h2><p>package.json定义了这个项目所需要的各种模板，以及项目的配置信息，当我们使用npm init命令时即可以生成package.json.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&#123;</div><div class="line">        &quot;name&quot;: &quot;my_package&quot;,     //项目名称，只能一个单词且全小写，允许-和_。发布的时候名字和npm官网不重名</div><div class="line">        &quot;version&quot;: &quot;1.0.0&quot;,      //版本号。 </div><div class="line">        &quot;main&quot;: &quot;index.js&quot;,      //main字段指定了加载的入口文件。</div><div class="line">        &quot;scripts&quot;: &#123;                 //指定了运行脚本命令的npm命令行缩写</div><div class="line">            &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;    //一般默认一个test的空文件夹、用作写测试代码。</div><div class="line">        &#125;,</div><div class="line">        &quot;keywords&quot;: [],  //项目的关键词。</div><div class="line">        &quot;author&quot;: &quot;ag_dubs&quot;, //作者名称</div><div class="line">        &quot;license&quot;: &quot;ISC&quot;, //协议 </div><div class="line">        &quot;repository&quot;: &#123;  // 用来存放到 版本管理远程服务。</div><div class="line">            &quot;type&quot;: &quot;git&quot;,</div><div class="line">            &quot;url&quot;: &quot;https://github.com/ashleygwilliams/my_package.git&quot;</div><div class="line">        &#125;,</div><div class="line">        &quot;dependencies&quot;: &#123;   // 正式使用时，依赖的包</div><div class="line">            &quot;my_dep&quot;: &quot;^1.0.0&quot;</div><div class="line">        &#125;,</div><div class="line">        &quot;devDependencies&quot; : &#123;//开发或者测试时，依赖的包，用户使用时不会被下载。</div><div class="line">            &quot;my_test_framework&quot;: &quot;^3.1.0&quot;</div><div class="line">        &#125;</div><div class="line">        &quot;bugs&quot;: &#123;一个对象，包含url网址和邮箱，当使用者发现问题时，可以通过这两种方式提交问题</div><div class="line">            &quot;url&quot;: &quot;https://github.com/ashleygwilliams/my_package/issues&quot;</div><div class="line">        &#125;,</div><div class="line">        &quot;homepage&quot;: &quot;https://github.com/ashleygwilliams/my_package&quot;  //项目主页</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="npm-install-–save-app-与-npm-install-–save-dev-app有什么区别"><a href="#npm-install-–save-app-与-npm-install-–save-dev-app有什么区别" class="headerlink" title="npm install –save app 与 npm install –save-dev app有什么区别?"></a>npm install –save app 与 npm install –save-dev app有什么区别?</h2><ol>
+<li><p><code>npm install --save app</code>：将在当前目录导入npm依赖包，并写入’dependencies’字段，当其他人下载代码并运行npm install时会自动下载。</p>
 </li>
-<li><p><code>$(&#39;div&#39;).html()</code> //没有参数，获取元素的innerHTML</p>
+<li><p><code>npm install --save-dev app</code>：将在当前目录导入npm依赖包，并写入’devDependencies’字段，当其他人下载代码并运行npm install时不会自动下载。</p>
 </li>
-<li><code>$(&#39;div&#39;).html(&#39;123&#39;)</code> //有参数，参数内容即为修改后的元素innerHTML</li>
-<li><code>text()</code>读写两用的方法，和html方法类似，用于获取/修改元素的innerText值</li>
-</ul>
-<h2 id="如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"><a href="#如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？" class="headerlink" title="如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"></a>如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？</h2><ul>
-<li><strong>.val([value])<br></strong><br>读写双用的方法，用来处理input的value，设置和获取表单用户输入或者选择的内容,当方法没有参数的时候返回input的value值，当传递了一个参数的时候，方法修改input的value值为参数值</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&apos;input&apos;).val() //没有参数的时候返回input的value值</div><div class="line">$(&apos;input&apos;).val(&apos;newValue&apos;); //当传递了一个参数的时候，将参数值设为input的value值</div><div class="line">$(&apos;input&apos;)[0].value = &quot;hello&quot; 用原生DOM的方式设置值</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>.attr(attributeName)</strong><br><br>获取元素的属性。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; value=&quot;hello&quot;&gt;</div><div class="line">   &lt;script&gt;</div><div class="line">       console.log($(&apos;input&apos;).attr(&quot;type&quot;)) //text</div><div class="line">   &lt;/script&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>.removeAttr(attributeName)</strong><br><br>移除特定元素的某个属性。</li>
-</ul>
-<p>为匹配的元素集合中的每个元素中移除一个属性</p>
-<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p><a href="http://js.jirengu.com/guji/1/edit?html,css,js,output" target="_blank" rel="external">dom</a><br><a href="http://js.jirengu.com/bitan/1/edit?output" target="_blank" rel="external">dom</a><br><a href="http://js.jirengu.com/rafij/1/edit?html,css,js,output" target="_blank" rel="external">slidup</a></p>
+</ol>
+<h2 id="node-modules的查找路径是怎样的"><a href="#node-modules的查找路径是怎样的" class="headerlink" title="node_modules的查找路径是怎样的?"></a>node_modules的查找路径是怎样的?</h2><p> 当require一个模块xxx时，会首先在当前目录下寻找node_modules下的xxx，若没有，则返回到上一级目录的node_modules下寻找xxx，最终会找到根目录下node_modules下的xxx。</p>
+<h2 id="webpack是什么？和其他同类型工具比有什么优势？"><a href="#webpack是什么？和其他同类型工具比有什么优势？" class="headerlink" title="webpack是什么？和其他同类型工具比有什么优势？"></a>webpack是什么？和其他同类型工具比有什么优势？</h2><p>webpack 是一款模块加载器兼打包工具，它能把各种资源 JS、CSS、图片等都作为模块来使用和处理。</p>
+<p>webpack的核心是一切皆模块的思想，所以，任何模块，CSS，图片，字体，都被webpack当做模块来处理，我们只需要在需要这些模块的时候来require。</p>
+<h3 id="webpack的优势一：Code-Splitting代码分割"><a href="#webpack的优势一：Code-Splitting代码分割" class="headerlink" title="webpack的优势一：Code Splitting代码分割"></a>webpack的优势一：Code Splitting代码分割</h3><p>过去，传输模块时有两个极端：</p>
+<ol>
+<li>一个请求获取一个模块<br>（requirejs 每一个require的模块，对应的都是一条网络请求）</li>
+</ol>
+<p>优点：只传送所需的模块<br>缺点：许多请求意味着很多开销<br>缺点：因为请求的延迟，程序启动缓慢</p>
+<ol>
+<li>一个请求获取所有模块<br>（r.js 把所有的模块都打包成一个网络请求）</li>
+</ol>
+<p>优点：请求开销减少，延迟小<br>缺点：暂时并不所需的模块也被传送<br>webpack将请求的模块组拆分成许多小块。<br>被复用的模块组被一次请求最开始就获取，最初不需要的模块的块则可以按需加载。 拥有初始下载量小，并在应用程序请求时按要求下载代码的优势。</p>
+<h3 id="webpack的优势二：Loaders加载器"><a href="#webpack的优势二：Loaders加载器" class="headerlink" title="webpack的优势二：Loaders加载器"></a>webpack的优势二：Loaders加载器</h3><p>通过 loader 的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。它可以取代gulp的压缩图片打包js等功能</p>
+<h3 id="webpack的优势三：Clever-parsing解析"><a href="#webpack的优势三：Clever-parsing解析" class="headerlink" title="webpack的优势三：Clever parsing解析"></a>webpack的优势三：Clever parsing解析</h3><p>用 commonJS 来书写，对 AMD/CMD 支持也很全面。</p>
+<h3 id="webpack的优势四：插件系统"><a href="#webpack的优势四：插件系统" class="headerlink" title="webpack的优势四：插件系统"></a>webpack的优势四：插件系统</h3><p> webpack具有丰富的插件系统。</p>
+<h2 id="npm-script是什么？如何使用？"><a href="#npm-script是什么？如何使用？" class="headerlink" title="npm script是什么？如何使用？"></a>npm script是什么？如何使用？</h2><p>npm script 是利用packge.json中 script 这个属性，制定一个工作流。<br>简化命令行的使用。</p>
+<h2 id="使用-webpack-替换-入门-任务15中模块化使用的-requriejs"><a href="#使用-webpack-替换-入门-任务15中模块化使用的-requriejs" class="headerlink" title="使用 webpack 替换 入门-任务15中模块化使用的 requriejs"></a>使用 webpack 替换 入门-任务15中模块化使用的 requriejs</h2><p><a href="https://github.com/MorganXie/Demos/tree/master/webpack-Demo" target="_blank" rel="external">地址</a></p>
+<h2 id="gulp是什么？使用-gulp-实现图片压缩、CSS-压缩合并、JS-压缩合并"><a href="#gulp是什么？使用-gulp-实现图片压缩、CSS-压缩合并、JS-压缩合并" class="headerlink" title="gulp是什么？使用 gulp 实现图片压缩、CSS 压缩合并、JS 压缩合并"></a>gulp是什么？使用 gulp 实现图片压缩、CSS 压缩合并、JS 压缩合并</h2><p>gulp是前端自动化构建工作流的利器，自动化地完成 javascript/coffee/sass/less 等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。</p>
+<h3 id="glup安装及使用"><a href="#glup安装及使用" class="headerlink" title="glup安装及使用"></a>glup安装及使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$npm install gulp-cli -g //全局安装gulp,作为命令行工具是不能require到的</div><div class="line">$npm install gulp -D //在当前项目的目录下安装gulp，才能require到，等于 npm install --save-dev gulp</div><div class="line">$touch gulpfile.js  //新建gulpfile.js文件</div><div class="line">$gulp --help</div></pre></td></tr></table></figure>
+<p><strong>gulp是一个对象，对象里有如下几个方法</strong></p>
+<p><code>gulp.src | gulp.dest | gulp.task | gulp.watch</code><br></p>
+<p><a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" target="_blank" rel="external">参见gulp文档</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">gulp.src(globs[, options])：把哪些文件放入glup中处理，采用正则表达式的写法，可以是字符串或者数组，通过gulp转化成数据流</div><div class="line">gulp.dest(path[, options]) 将数据流导出成文件</div><div class="line">gulp.task(name [, deps] [, fn]) 创建任务，一个任务可以认为是一个流水线 [, deps] 依赖是并行的</div><div class="line">gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts, cb]) 监测文件内容的改动</div></pre></td></tr></table></figure>
+<h3 id="gulp运行"><a href="#gulp运行" class="headerlink" title="gulp运行"></a>gulp运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">终端运行gulp taskname</div><div class="line">如果想要直接gulp就能运行，可以将原taskname改为default或者新建一个task，</div><div class="line">taskname为default</div></pre></td></tr></table></figure>
+<h3 id="使用-gulp-实现图片压缩、CSS-压缩合并、JS-压缩合并"><a href="#使用-gulp-实现图片压缩、CSS-压缩合并、JS-压缩合并" class="headerlink" title="使用 gulp 实现图片压缩、CSS 压缩合并、JS 压缩合并"></a>使用 gulp 实现图片压缩、CSS 压缩合并、JS 压缩合并</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">gulpfile.js文件中</div><div class="line"></div><div class="line">var gulp = require(&apos;gulp&apos;);</div><div class="line">//引入组件</div><div class="line">var minifycss = require(&apos;gulp-minify-css&apos;),//css压缩</div><div class="line">    uglify = require(&apos;gulp-uglify&apos;),//js压缩</div><div class="line">    concat = require(&apos;gulp-concat&apos;), //合并文件</div><div class="line"></div><div class="line">    rename = require(&apos;gulp-rename&apos;), //重命名</div><div class="line">    clean = require(&apos;gulp-clean&apos;),//清空文件夹</div><div class="line"></div><div class="line">    minhtml = require(&apos;gulp-htmlmin&apos;),//html压缩</div><div class="line">    jshint = require(&apos;gulp-jshint&apos;),//js代码规范性检查</div><div class="line">    imagemin = require(&apos;gulp-imagemin&apos;);//图片压缩</div><div class="line"></div><div class="line">gulp.task(&apos;html&apos;,function()&#123;</div><div class="line">    return gulp.src(&apos;src/*.html&apos;)</div><div class="line">        .pipe(minhtml(&#123;collapseWhitespace: true&#125;))</div><div class="line">        .pipe(gulp.dest(&apos;dist&apos;));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(&apos;css&apos;,function(argument)&#123;</div><div class="line"></div><div class="line">    gulp.src(&apos;src/css/*.css&apos;)</div><div class="line">        .pipe(concat(&apos;merge.min.css&apos;))</div><div class="line">        .pipe(minifycss())</div><div class="line">        .pipe(gulp.dest(&apos;dist/css/&apos;));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(&apos;js&apos;,function(argument)&#123;</div><div class="line">    gulp.src(&apos;src/js/*.js&apos;)</div><div class="line">        .pipe(jshint())</div><div class="line">        .pipe(jshint.reporter(&apos;default&apos;))</div><div class="line"></div><div class="line">        .pipe(concat(&apos;merge.js&apos;))</div><div class="line">        .pipe(rename(&#123;</div><div class="line">            suffix: &apos;.min&apos;</div><div class="line">        &#125;))</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(&apos;dist/js/&apos;));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(&apos;img&apos;,function(argument)&#123;</div><div class="line">    gulp.src(&apos;src/imgs/*&apos;)</div><div class="line">        .pipe(imagemin())</div><div class="line">        .pipe(gulp.dest(&apos;dist/imgs&apos;));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(&apos;clear&apos;, function()&#123; //清空文件夹</div><div class="line">    gulp.src(&apos;dist/*&apos;,&#123;read: false&#125;)</div><div class="line">        .pipe(clean());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(&apos;build&apos;,[&apos;html&apos;,&apos;css&apos;,&apos;js&apos;,&apos;img&apos;]);//运行gulp build的时候，相当于把html,css,js,img都运行了</div></pre></td></tr></table></figure>
+<h2 id="开发一个-node-命令行天气应用用于查询用户当前所在城市的天气，发布到-npm-上去。可以通过如下方式安装使用-可使用api-jirengu-com里提供的查询天气接口-选做题目"><a href="#开发一个-node-命令行天气应用用于查询用户当前所在城市的天气，发布到-npm-上去。可以通过如下方式安装使用-可使用api-jirengu-com里提供的查询天气接口-选做题目" class="headerlink" title="开发一个 node 命令行天气应用用于查询用户当前所在城市的天气，发布到 npm 上去。可以通过如下方式安装使用(可使用api.jirengu.com里提供的查询天气接口) (选做题目)"></a>开发一个 node 命令行天气应用用于查询用户当前所在城市的天气，发布到 npm 上去。可以通过如下方式安装使用(可使用api.jirengu.com里提供的查询天气接口) (选做题目)</h2><p><a href="https://www.npmjs.com/package/weather-xiexuan" target="_blank" rel="external">npm 地址</a></p>
+<p>使用 <code>XXweather + cityName</code>获取指定地址的天气（如果不写cityName 则获取当地天气）</p>
 
       
 
@@ -282,7 +243,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">npm webpack</a>
         		</li>
       		
 		</ul>
@@ -338,7 +299,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/09/jQuery/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/09/npm-and-webpack/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -352,18 +313,18 @@
   
 <nav id="article-nav">
   
-    <a href="/myBlog/2017/10/09/jQuery DOM and Ajax/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/myBlog/2017/10/09/Design-patterns/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          jQuery DOM and Ajax
+          Design patterns
         
       </div>
     </a>
   
   
-    <a href="/myBlog/2017/10/09/cross-domain/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cross-domain</div>
+    <a href="/myBlog/2017/10/09/AMD CMD and RequireJS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AMD,CMD and RequireJS</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>jQuery | 前方高能</title>
+  <title>Tag: HTML5 CSS3 | 前方高能</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##jQuery 能做什么？ jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。jQuery是一个JavaScript函数库，可以方便地：  选择dom元素 dom操作 事件处理 特效处理 ajax 链式操作">
-<meta name="keywords" content="JavaScript">
-<meta property="og:type" content="article">
-<meta property="og:title" content="jQuery">
-<meta property="og:url" content="http://yoursite.com/2017/10/09/jQuery/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="前方高能">
+<meta property="og:url" content="http://yoursite.com/tags/HTML5-CSS3/index.html">
 <meta property="og:site_name" content="前方高能">
-<meta property="og:description" content="##jQuery 能做什么？ jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。jQuery是一个JavaScript函数库，可以方便地：  选择dom元素 dom操作 事件处理 特效处理 ajax 链式操作">
-<meta property="og:updated_time" content="2017-10-08T20:22:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery">
-<meta name="twitter:description" content="##jQuery 能做什么？ jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。jQuery是一个JavaScript函数库，可以方便地：  选择dom元素 dom操作 事件处理 特效处理 ajax 链式操作">
+<meta name="twitter:title" content="前方高能">
   
     <link rel="alternative" href="/atom.xml" title="前方高能" type="application/atom+xml">
   
@@ -146,257 +141,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jQuery" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      jQuery
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/myBlog/2017/10/09/HTML5-and-CSS3/" class="archive-article-date">
+  	<time datetime="2017-10-08T20:31:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/myBlog/2017/10/09/HTML5-and-CSS3/">HTML5 and CSS3</a>
     </h1>
   
 
-        
-        <a href="/myBlog/2017/10/09/jQuery/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:46:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##jQuery 能做什么？</p>
-<p>jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。<br>jQuery是一个JavaScript函数库，可以方便地：</p>
-<ul>
-<li>选择dom元素</li>
-<li>dom操作</li>
-<li>事件处理</li>
-<li>特效处理</li>
-<li>ajax</li>
-<li>链式操作</li>
-</ul>
-<a id="more"></a>
-<h2 id="jQuery-对象和-DOM-原生对象有什么区别？如何转化？"><a href="#jQuery-对象和-DOM-原生对象有什么区别？如何转化？" class="headerlink" title="jQuery 对象和 DOM 原生对象有什么区别？如何转化？"></a>jQuery 对象和 DOM 原生对象有什么区别？如何转化？</h2><p>####区别：</p>
-<p><strong>DOM对象 ：W3C标准用于操作文档的API。具体点来说就是指 HTML 文本中的所有被标签标记的东西 ，在js里可以用 getElementById 等传统的方法获得的对象，拥有原生对象的属性和方法。<br>jQuery对象：将DOM原生对象进行封装后得到的类数组对象</strong></p>
-<p>####注意：</p>
-<p>jQuery对象只能用jQuery对象的方法<br>DOM对象只能使用DOM对象的方法</p>
-<p>####转化：</p>
-<p>jquery提供了两种方法将一个jquery对象转换成一个DOM对象，[index]和get(index)。<br>使用$(DOM对象)就可以将DOM对象转化为jQuery对象</p>
-<p>##jQuery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//bind用于绑定事件，古老写法，不推荐</div><div class="line">$(selector).bind(event,[data],function)</div><div class="line"></div><div class="line">//unbind用于解绑事件，古老写法，不推荐</div><div class="line">$(selector).unbind(event,[function])</div><div class="line"></div><div class="line">//delegate用于事件代理，古老写法，不推荐</div><div class="line">$(selector).delegate(childSelector,event,[data],function)</div><div class="line"></div><div class="line">//live() 方法为被选元素附加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。不推荐使用</div><div class="line">$(selector).live(event,[data],function)</div></pre></td></tr></table></figure>
-<p><code>.on( events [,selector ] [,data ], handler(eventObject) )</code><br><strong>增加事件处理函数</strong></p>
-<ol>
-<li>events：事件类型和可选的命名空间，或仅仅是命名空间，比如”click”, “keydown.myPlugin”, 或者 “.myPlugin”，一个或多个</li>
-<li>selector：选择器，用于过滤出被选中的元素中能触发事件的后代元素。</li>
-<li>data：传递给事件处理函数的event.data<br>handler(eventObject)：事件被触发时的执行函数。若该函数只是要执行return false，该参数位置可以直接简写成 false</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 普通事件绑定，最简单的用法</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, function(e)&#123;</div><div class="line">    console.log(this); //点击的元素</div><div class="line">    console.log(e); // 事件，e.target 事件的对象</div><div class="line">&#125;);</div><div class="line">// 事件委托或者事件代理，想让div 下面所有的span绑定事件，可以把事件绑定到div上</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, &apos;span&apos;, function(e)&#123;</div><div class="line">    console.log(this);</div><div class="line">    console.log(e);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 可以在绑定的时候给事件处理程序传递一些参数</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, &#123;name: &apos;Byron&apos;, age: 24&#125;, function(e)&#123;</div><div class="line">    console.log(e.data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><strong>命名空间的作用：解绑事件时做一个区分</strong></p>
-<p>#click.hello事件解绑，但是click事件不受影响</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(&apos;.box&gt;ul&apos;).on(&apos;click&apos;,3,function(e)&#123;</div><div class="line">   console.log(e.data)</div><div class="line"> &#125;)</div><div class="line"> $(&apos;.box&gt;ul&apos;).on(&apos;click.hello&apos;,&apos;li&apos;,function()&#123;</div><div class="line">   console.log(this)</div><div class="line">   var str = $(this).text()</div><div class="line">   $(&apos;#wrap&apos;).text(str)</div><div class="line"> &#125;)</div><div class="line"> $(&apos;.box&gt;ul&apos;).off(&apos;click.hello&apos;)</div></pre></td></tr></table></figure>
-<p><code>.off( events [, selector ] [, handler ] )</code><br><strong>移除一个事件处理函数</strong></p>
-<h2 id="jQuery-如何展示-隐藏元素？"><a href="#jQuery-如何展示-隐藏元素？" class="headerlink" title="jQuery 如何展示/隐藏元素？"></a>jQuery 如何展示/隐藏元素？</h2><ul>
-<li>.hide([duration ] [,easing ] [,complete ])<br>隐藏元素，没有参数的时候等同于直接设置display:none属性</li>
-<li>.show( [duration ] [, easing ] [, complete ] )<br>用于显示元素，用法和hide类似</li>
-<li>.toggle( [duration ] [, easing ] [, complete ] )</li>
-</ul>
-<p>toggle是切换的意思，用来切换元素的隐藏、显示，类似于toggleClass<br>事件处理套件也有一个名为.toggle()方法。哪一个被调用取决于传递的参数的设置</p>
-<ol>
-<li>duration：动画持续多久</li>
-<li>easing：表示过渡使用哪种缓动函数，jQuery自身提供”linear” 和 “swing”</li>
-<li>complete：在动画完成时执行的函数,先完成动画，后执行函数</li>
-</ol>
-<h2 id="jQuery-动画如何使用？"><a href="#jQuery-动画如何使用？" class="headerlink" title="jQuery 动画如何使用？"></a>jQuery 动画如何使用？</h2><h4 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h4><ul>
-<li>.fadeIn( [duration ] [, easing ] [, complete ] )<br>通过淡入的方式显示匹配元素</li>
-<li>.fadeOut( [duration ] [, easing ] [, complete ] )<br>通过淡出的方式隐藏匹配元素</li>
-<li>.fadeTo( duration, opacity [, easing ] [, complete ] )<br>调整匹配元素的透明度，方法通过匹配元素的不透明度做动画效果</li>
-<li>.fadeToggle( [duration ] [, easing ] [, complete ] )</li>
-</ul>
-<h4 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h4><ul>
-<li>.slideDown( [duration ] [, easing ] [, complete ] )<br>用滑动动画显示一个匹配元素</li>
-<li>.slideUp( [duration ] [, easing ] [, complete ] )<br>用滑动动画隐藏一个匹配元素</li>
-<li>.slideToggle( [duration ] [, easing ] [, complete ] )<br>用滑动动画显示或隐藏一个匹配元素</li>
-</ul>
-<p>####自定义动画</p>
-<ul>
-<li>.animate( properties [, duration ] [, easing ] [, complete ] )<br>properties是一个CSS属性和值的对象,动画将根据这组对象移动。</li>
-</ul>
-<h2 id="如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？"><a href="#如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？" class="headerlink" title="如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？"></a>如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？</h2><ul>
-<li><p><code>html([string])</code><br>读写两用的方法，用于获取/修改元素的innerHTML</p>
-</li>
-<li><p><code>$(&#39;div&#39;).html()</code> //没有参数，获取元素的innerHTML</p>
-</li>
-<li><code>$(&#39;div&#39;).html(&#39;123&#39;)</code> //有参数，参数内容即为修改后的元素innerHTML</li>
-<li><code>text()</code>读写两用的方法，和html方法类似，用于获取/修改元素的innerText值</li>
-</ul>
-<h2 id="如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"><a href="#如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？" class="headerlink" title="如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"></a>如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？</h2><ul>
-<li><strong>.val([value])<br></strong><br>读写双用的方法，用来处理input的value，设置和获取表单用户输入或者选择的内容,当方法没有参数的时候返回input的value值，当传递了一个参数的时候，方法修改input的value值为参数值</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&apos;input&apos;).val() //没有参数的时候返回input的value值</div><div class="line">$(&apos;input&apos;).val(&apos;newValue&apos;); //当传递了一个参数的时候，将参数值设为input的value值</div><div class="line">$(&apos;input&apos;)[0].value = &quot;hello&quot; 用原生DOM的方式设置值</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>.attr(attributeName)</strong><br><br>获取元素的属性。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; value=&quot;hello&quot;&gt;</div><div class="line">   &lt;script&gt;</div><div class="line">       console.log($(&apos;input&apos;).attr(&quot;type&quot;)) //text</div><div class="line">   &lt;/script&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>.removeAttr(attributeName)</strong><br><br>移除特定元素的某个属性。</li>
-</ul>
-<p>为匹配的元素集合中的每个元素中移除一个属性</p>
-<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p><a href="http://js.jirengu.com/guji/1/edit?html,css,js,output" target="_blank" rel="external">dom</a><br><a href="http://js.jirengu.com/bitan/1/edit?output" target="_blank" rel="external">dom</a><br><a href="http://js.jirengu.com/rafij/1/edit?html,css,js,output" target="_blank" rel="external">slidup</a></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>爱给不给。<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://ww1.sinaimg.cn/large/d6c04639gy1fkbfhwgwlfj20by0bygmg.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HTML5 CSS3</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/09/jQuery/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/myBlog/2017/10/09/jQuery DOM and Ajax/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          jQuery DOM and Ajax
-        
-      </div>
-    </a>
   
   
-    <a href="/myBlog/2017/10/09/cross-domain/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cross-domain</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -419,9 +217,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
