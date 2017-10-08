@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/10 | Hexo</title>
+  <title>HTML Form | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2017/10/index.html">
+  <meta name="description" content="form表单有什么作用？有哪些常用的input 标签，分别有什么作用？实现页面与web服务器传输数据的作用。常见的form表单有 多选框（checkbox），按钮（button），单选按钮（radio），多行文本（textarea），密码框（password），提交按钮（submit），下拉菜单（select）等等。 post 和 get 方式的区别？ GET一般用于获取/查询资源信息，而POST">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML Form">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/HTML-Form/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="form表单有什么作用？有哪些常用的input 标签，分别有什么作用？实现页面与web服务器传输数据的作用。常见的form表单有 多选框（checkbox），按钮（button），单选按钮（radio），多行文本（textarea），密码框（password），提交按钮（submit），下拉菜单（select）等等。 post 和 get 方式的区别？ GET一般用于获取/查询资源信息，而POST">
+<meta property="og:updated_time" content="2017-10-08T19:18:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="HTML Form">
+<meta name="twitter:description" content="form表单有什么作用？有哪些常用的input 标签，分别有什么作用？实现页面与web服务器传输数据的作用。常见的form表单有 多选框（checkbox），按钮（button），单选按钮（radio），多行文本（textarea），密码框（password），提交按钮（submit），下拉菜单（select）等等。 post 和 get 方式的区别？ GET一般用于获取/查询资源信息，而POST">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -145,157 +149,187 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-HTML-Form" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      HTML Form
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/10/09/HTML-Form/" class="archive-article-date">
+
+        
+        <a href="/myBlog/2017/10/09/HTML-Form/" class="archive-article-date">
   	<time datetime="2017-10-08T19:18:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/10/09/HTML-Form/">HTML Form</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="form表单有什么作用？有哪些常用的input-标签，分别有什么作用？"><a href="#form表单有什么作用？有哪些常用的input-标签，分别有什么作用？" class="headerlink" title="form表单有什么作用？有哪些常用的input 标签，分别有什么作用？"></a>form表单有什么作用？有哪些常用的input 标签，分别有什么作用？</h3><p><strong>实现页面与web服务器传输数据的作用。</strong><br>常见的form表单有 多选框（checkbox），按钮（button），单选按钮（radio），多行文本（textarea），密码框（password），提交按钮（submit），下拉菜单（select）等等。</p>
+<h3 id="post-和-get-方式的区别？"><a href="#post-和-get-方式的区别？" class="headerlink" title="post 和 get 方式的区别？"></a>post 和 get 方式的区别？</h3><ol>
+<li><p>GET一般用于获取/查询资源信息，而POST一般用于更新资源信息。</p>
+</li>
+<li><p>GET请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，参数之间以&amp;相连，如：login.action?name=hyddd&amp;password=idontknow&amp;verify=%E4%BD%A0%E5%A5%BD。POST把提交的数据则放置在是HTTP包的包体中。</p>
+</li>
+<li><p>GET方式提交的数据最多只能是1024字节，理论上POST没有限制，可传较大量的数据，IIS4中最大为80KB，IIS5中为100KB</p>
+</li>
+<li><p>POST的安全性要比GET的安全性高。举例：通过GET提交数据，用户名和密码将明文出现在URL上，因为(1)登录页面有可能被浏览器缓存，(2)其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了，除此之外，使用GET提交数据还可能会造成Cross-site request forgery攻击。</p>
+</li>
+</ol>
+<h3 id="在input里，name-有什么作用？"><a href="#在input里，name-有什么作用？" class="headerlink" title="在input里，name 有什么作用？"></a>在input里，name 有什么作用？</h3><p>name 属性规定 input 元素的名称。<br>name 属性用于对提交到服务器后的表单数据进行标识，或者在客户端通过 JavaScript 引用表单数据。</p>
+<p><strong>注释</strong>：只有设置了 name 属性的表单元素才能在提交表单时传递它们的值。</p>
+<h3 id="radio-如何-分组"><a href="#radio-如何-分组" class="headerlink" title="radio 如何 分组?"></a>radio 如何 分组?</h3><p>取决于name的值是否相同。</p>
+<h3 id="placeholder-属性有什么作用"><a href="#placeholder-属性有什么作用" class="headerlink" title="placeholder 属性有什么作用?"></a>placeholder 属性有什么作用?</h3><p>placeholder 属性提供可描述输入字段预期值的提示信息（hint）。<br>该提示会在输入字段为空时显示，并会在字段获得焦点时消失。</p>
+<h3 id="type-hidden隐藏域有什么作用-举例说明"><a href="#type-hidden隐藏域有什么作用-举例说明" class="headerlink" title="type=hidden隐藏域有什么作用? 举例说明"></a>type=hidden隐藏域有什么作用? 举例说明</h3><ul>
+<li><p>隐藏域在页面中对于用户是不可见的，在表单中插入隐藏域的目的在于收集或发送信息，以利于被处理表单的程序所使用。浏览者单击发送按钮发送表单的时候，隐藏域的信息也被一起发送到服务器。</p>
+</li>
+<li><p>有些时候我们要给用户一信息，让他在提交表单时提交上来以确定用户身份，如sessionkey，等等．当然这些东西也能用cookie实现，但使用隐藏域就简单的多了．而且不会有浏览器不支持，用户禁用cookie的烦恼。</p>
+</li>
+<li>有些时候一个form里有多个提交按钮，怎样使程序能够分清楚到底用户是按那一个按钮提交上来的呢？我们就可以写一个隐藏域，然后在每一个按钮处加上 onclick=”document.form.command.value=”xx””然后我们接到数据后先检查command的值就会知道用户是按的那个按钮提交上来的。</li>
+<li>javascript不支持全局变量，但有时我们必须用全局变量，我们就可以把值先存在隐藏域里，它的值就不会丢失了。</li>
+<li>还有个例子，比如按一个按钮弹出四个小窗口，当点击其中的一个小窗口时其他三个自动关闭．可是IE不支持小窗口相互调用，所以只有在父窗口写个隐藏域，当小窗口看到那个隐藏域的值是close时就自己关掉。</li>
+</ul>
+<h3 id="备忘"><a href="#备忘" class="headerlink" title="备忘"></a>备忘</h3><p><code>&lt;input type =&quot;file&quot; name =&quot;myfile&quot; accept=&quot;image/png&quot;&gt;&lt;/form&gt;</code></p>
+<p>accept 属性只能与 <code>&lt;input type=&quot;file&quot;&gt;</code> 配合使用。它规定能够通过文件上传进行提交的文件类型。</p>
+<p> required 属性规定必需在提交之前填写输入字段。<br>如果使用该属性，则字段是必填（或必选）的。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>爱给不给。<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://ww1.sinaimg.cn/large/d6c04639gy1fkbfhwgwlfj20by0bygmg.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/09/HTML-Form/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/10/09/something-about-HTML/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/myBlog/2017/10/09/something-about-HTML/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">something about HTML</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/10/09/something-about-HTML/">something about HTML</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/10/09/Git/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:17:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/10/09/Git/">Git</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/10/09/从URL输入到网页展示的过程/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:09:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/10/09/从URL输入到网页展示的过程/">从URL输入到网页展示的过程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/10/04/hello-world/" class="archive-article-date">
-  	<time datetime="2017-10-04T15:16:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/10/04/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -318,8 +352,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
