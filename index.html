@@ -143,6 +143,454 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-AMD CMD and RequireJS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/AMD CMD and RequireJS/">AMD,CMD and RequireJS</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/AMD CMD and RequireJS/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:51:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="为什么要使用模块化？"><a href="#为什么要使用模块化？" class="headerlink" title="为什么要使用模块化？"></a>为什么要使用模块化？</h2><ol>
+<li>解决命名冲突</li>
+<li>文件依赖的管理</li>
+<li>提高代码可读性</li>
+<li>代码解耦，提高复用性</li>
+</ol>
+<h2 id="CMD、AMD、CommonJS-规范分别指什么？有哪些应用"><a href="#CMD、AMD、CommonJS-规范分别指什么？有哪些应用" class="headerlink" title="CMD、AMD、CommonJS 规范分别指什么？有哪些应用"></a>CMD、AMD、CommonJS 规范分别指什么？有哪些应用</h2><p><strong>CommonJS服务器端规范(node.js使用）</strong></p>
+<p>node.js 天然支持CommonJS规范</p>
+<ol>
+<li>定义模块 ，根据CommonJS规范，一个单独的文件就是一个模块，每一个模块都是一个单独的作用域，在一个模块定义的变量无法被其他模块读取，除非定义为global对象的属性。</li>
+<li>模块输出：模块只有一个出口，module.exprots 对象，我们需要把模块希望输出的内容放在该对象里面。</li>
+<li>加载模块：加载模块使用require方法，该方法读取一个文件并执行，返回文件内部的modul.exports对象。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//在文件a.js中定义模块</div><div class="line"></div><div class="line">var People =&#123;</div><div class="line">	name :&apos;xiexuan&apos;,</div><div class="line">	sayName:function ()&#123;</div><div class="line">	console.log(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exprots  = People;	</div><div class="line">	</div><div class="line">////文件b中定义加载模块</div><div class="line"></div><div class="line">var p1 = require(&apos;./a&apos;);</div><div class="line">p1.sayName();</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">终端出入node b.js 运行。</div><div class="line"></div><div class="line"></div><div class="line">xiexuan</div></pre></td></tr></table></figure>
+<p><strong>缺陷</strong>：<br>require是同步的。即模块系统需要同步读取文件内容，并编译执行已得到模块接口。这在服务器端实现很简单，在浏览器端，加载JavaScript最佳方式是document中插入script标签。但是脚本标签天生异步，所以，传统CommonJS模块在浏览器环境中无法正常加载。</p>
+<h3 id="AMD-Asynchronous-Module-Definition-异步模块定义"><a href="#AMD-Asynchronous-Module-Definition-异步模块定义" class="headerlink" title="AMD (Asynchronous Module Definition, 异步模块定义)"></a>AMD (Asynchronous Module Definition, 异步模块定义)</h3><p>指定一种机制，在该机制下模块和依赖可以移步加载。这对浏览器端的异步加载尤其适用。由于不是JavaScript原生支持，使用AMD规范进行页面开发需要用到对应的库函数<code>RequireJS</code>。实现AMD的库有｀<code>RequireJS</code> 、<code>curl</code> 、<code>Dojo</code> 等。</p>
+<h3 id="RequireJS主要解决的问题"><a href="#RequireJS主要解决的问题" class="headerlink" title="RequireJS主要解决的问题"></a>RequireJS主要解决的问题</h3><ol>
+<li>当多个js文件可能有依赖关系，被依赖的文件需要早于依赖它的文件加载。</li>
+<li>js加载时浏览器会停止页面渲染，加载文件越多，页面失去响应时间越长。</li>
+</ol>
+<p><strong>define函数，用来定义模块</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">define(id? , dependencies? ,factory);</div></pre></td></tr></table></figure>
+<ol>
+<li>id :可选参数，用来定义模块标识，如果没有提供该参数，脚本的文件名（去掉后缀）</li>
+<li>dependencies：是一个当前模块依赖的模块名称数组</li>
+<li>factory：方法，模块初始化要执行的函数或对象。如果为函数，它应该只被执行一次。如果是对象，此对象应该为模块的输出值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">define([&apos;dependency&apos;],fucntion ()&#123;</div><div class="line">	var name = &apos;Xiexuan&apos;;</div><div class="line">	funciton printName ()&#123;</div><div class="line">	console.log(name);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	return &#123;</div><div class="line">		printName:printName;</div><div class="line">	&#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//加载模块</div><div class="line"></div><div class="line">require([&apos;myModule&apos;],function (my)&#123;</div><div class="line">		my.printName();		</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h5 id="require-函数在加载依赖的函数的时候是异步加载的，这样浏览器不会失去响应，它指定的回调函数，只有前面的模块都加载成功后，才会运行，解决了依赖性的问题。"><a href="#require-函数在加载依赖的函数的时候是异步加载的，这样浏览器不会失去响应，它指定的回调函数，只有前面的模块都加载成功后，才会运行，解决了依赖性的问题。" class="headerlink" title="require()函数在加载依赖的函数的时候是异步加载的，这样浏览器不会失去响应，它指定的回调函数，只有前面的模块都加载成功后，才会运行，解决了依赖性的问题。"></a>require()函数在加载依赖的函数的时候是异步加载的，这样浏览器不会失去响应，它指定的回调函数，只有前面的模块都加载成功后，才会运行，解决了依赖性的问题。</h5><h3 id="CMD-COMMON-MModule-Definition"><a href="#CMD-COMMON-MModule-Definition" class="headerlink" title="CMD( COMMON MModule Definition)"></a>CMD( COMMON MModule Definition)</h3><p>CMD有个浏览器的实现SeaJS，SeaJS要解决的问题和requireJS一样，只不过在模块定义方式和模块加载（可以说运行、解析）时机上有所不同</p>
+<p><strong>语法</strong><br><br>Sea.js 推崇一个模块一个文件，遵循统一的写法<br>define用来定义模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">define(id?,deps?,factory)</div></pre></td></tr></table></figure>
+<ol>
+<li>CMD推崇用文件名作为模块id</li>
+<li>CMD推崇依赖就近，一般不在define的参数中写依赖，在factory中写</li>
+<li>factory有三个参数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function(require, exports, module)</div><div class="line">//require(id)一个方法, 接受 模块标识 作为唯一参数，用来获取其他模块提供的接口</div><div class="line">//exports 作为一个向外提供模块接口的对象</div><div class="line">//module对象，存储了与当前模块相关联的属性和方法</div></pre></td></tr></table></figure>
+<h3 id="AMD与CMD区别"><a href="#AMD与CMD区别" class="headerlink" title="AMD与CMD区别"></a>AMD与CMD区别</h3><p>最明显的区别：在模块定义时依赖的处理不同</p>
+<ol>
+<li>AMD推崇依赖前置，在定义模块的时候就要声明其依赖的模块</li>
+<li>CMD推崇就近依赖，只有在用到某个模块的时候再去require</li>
+</ol>
+<p>这种区别各有优劣，只是语法上的差异，而且requireJS和seaJS都支持对方的写法。</p>
+<p><strong>最大的区别</strong>：对依赖模块的执行时机不同</p>
+<ol>
+<li>同样是异步加载模块，AMD在加载模块完成之后就会执行该模块，所有模块都执行完就会进入require的回调函数，执行主逻辑，这样依赖模块的执行顺序和书写顺序不一定一致，看网络速度，哪个先下载下来，哪个先执行，但是主逻辑一定在所有依赖加载完成后才执行。</li>
+<li>CMD加载完一个依赖模块后并不执行，只是下载而已，在所有依赖模块加载完成之后进入主逻辑，遇到require语句时才执行对应的模块，这样模块的执行顺序和书写顺序是完全一致的</li>
+</ol>
+<h4 id="这也是很多人说AMD用户体验好，因为没有延迟，依赖模块提前执行了，CMD性能好，因为只有用户需要的时候才执行的原因"><a href="#这也是很多人说AMD用户体验好，因为没有延迟，依赖模块提前执行了，CMD性能好，因为只有用户需要的时候才执行的原因" class="headerlink" title="这也是很多人说AMD用户体验好，因为没有延迟，依赖模块提前执行了，CMD性能好，因为只有用户需要的时候才执行的原因"></a>这也是很多人说AMD用户体验好，因为没有延迟，依赖模块提前执行了，CMD性能好，因为只有用户需要的时候才执行的原因</h4><h2 id="使用-requirejs-完善入门任务15，包括如下功能："><a href="#使用-requirejs-完善入门任务15，包括如下功能：" class="headerlink" title="使用 requirejs 完善入门任务15，包括如下功能："></a>使用 requirejs 完善入门任务15，包括如下功能：</h2><ol>
+<li>首屏大图为全屏轮播</li>
+<li>有回到顶部功能</li>
+<li>图片区使用瀑布流布局（图片高度不一），下部有加载更多按钮，点击加载更多会加载更多数据(数据在后端 mock)</li>
+<li><p>使用 r.js 打包应用</p>
+<p><a href="https://github.com/MorganXie/Demos/tree/master/AMD" target="_blank" rel="external">代码</a><br><a href="https://morganxie.github.io/Demos/AMD/" target="_blank" rel="external">效果</a></p>
+</li>
+</ol>
+<p> <strong>新闻加载需要server mock</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/AMD CMD and RequireJS/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-this and inheritance" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/this and inheritance/">this and inheritance</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/this and inheritance/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="this-相关问题"><a href="#this-相关问题" class="headerlink" title="this 相关问题"></a>this 相关问题</h2><h4 id="问题1：-apply、call-、bind有什么作用，什么区别"><a href="#问题1：-apply、call-、bind有什么作用，什么区别" class="headerlink" title="问题1： apply、call 、bind有什么作用，什么区别"></a>问题1： apply、call 、bind有什么作用，什么区别</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fn.call(context, param1, param2...)</div><div class="line">fn.apply(context, [param1,param2...])</div><div class="line">fun.bind(context, param1, param2...)</div></pre></td></tr></table></figure>
+<p>context：在函数运行时指定的 this 值。需要注意的是，如果这个函数处于非严格模式下，指定为 null 或 undefined 时会自动指向全局对象window。</p>
+<p><strong>作用：</strong></p>
+<ol>
+<li>apply()、call()方法在指定this值和参数的情况下调用函数</li>
+<li>bind()是ES5的新方法，该方法创建一个新的函数(称为绑定函数)，新函数与被调函数（绑定函数的目标函数）具有相同的函数体。当被调用时，第一个参数决定了运行时的this，之后传入的参数将会作为函数执行时的实参来使用。</li>
+</ol>
+<p><strong>相同：</strong><br>三者都是用来改变函数的this对象的指向的；第一个参数都是this要指向的对象，也就是想指定的上下文；都可以利用后续参数传参；</p>
+<p><strong>不同：</strong><br>bind返回对应的函数，便于稍后调用；apply，call则是立即调用。apply参数是数组或者类数组对象，call参数是参数列表。</p>
+<h4 id="问题2：-以下代码输出什么"><a href="#问题2：-以下代码输出什么" class="headerlink" title="问题2： 以下代码输出什么?"></a>问题2： 以下代码输出什么?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var john = &#123; </div><div class="line">  firstName: &quot;John&quot; </div><div class="line">&#125;</div><div class="line">function func() &#123; </div><div class="line">  alert(this.firstName + &quot;: hi!&quot;)</div><div class="line">&#125;</div><div class="line">john.sayHi = func</div><div class="line">john.sayHi()//John :hi!</div><div class="line"></div><div class="line"></div><div class="line">注意：john.sayHi() 相当于   john.sayHi.call(john);</div></pre></td></tr></table></figure>
+<h4 id="问题3：-下面代码输出什么，为什么"><a href="#问题3：-下面代码输出什么，为什么" class="headerlink" title="问题3： 下面代码输出什么，为什么"></a>问题3： 下面代码输出什么，为什么</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func() </div><div class="line">function func() &#123; </div><div class="line">  alert(this)</div><div class="line">&#125;</div><div class="line"></div><div class="line">输出：window</div><div class="line"></div><div class="line">func()等价于  func.call(undefinded)</div><div class="line">在非严格模式下浏览器会将undefined变为Window</div></pre></td></tr></table></figure>
+<h4 id="问题4：下面代码输出什么"><a href="#问题4：下面代码输出什么" class="headerlink" title="问题4：下面代码输出什么"></a>问题4：下面代码输出什么</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">document.addEventListener(&apos;click&apos;, function(e)&#123;</div><div class="line">    console.log(this);</div><div class="line">    setTimeout(function()&#123;</div><div class="line">        console.log(this);</div><div class="line">    &#125;, 200);</div><div class="line">&#125;, false);</div><div class="line"></div><div class="line"></div><div class="line">结果：第一个console.log(this)的结果是#document,因为此处的this指向被点击的目标，setTimeout中的console.log(this)是指向window</div><div class="line"></div><div class="line"></div><div class="line">注意：setTimeout、setInterval这两个方法执行的函数this是全局对象</div></pre></td></tr></table></figure>
+<h4 id="问题5：下面代码输出什么，why"><a href="#问题5：下面代码输出什么，why" class="headerlink" title="问题5：下面代码输出什么，why"></a>问题5：下面代码输出什么，why</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var john = &#123; </div><div class="line">  firstName: &quot;John&quot; </div><div class="line">&#125;</div><div class="line"></div><div class="line">function func() &#123; </div><div class="line">  alert( this.firstName )</div><div class="line">&#125;</div><div class="line">func.call(john) </div><div class="line"></div><div class="line"></div><div class="line">//结果john ,func.call(john)改变了this的值，当前的this变成了john这个对象。</div></pre></td></tr></table></figure>
+<h4 id="问题6：-以下代码有什么问题，如何修改"><a href="#问题6：-以下代码有什么问题，如何修改" class="headerlink" title="问题6： 以下代码有什么问题，如何修改"></a>问题6： 以下代码有什么问题，如何修改</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var module= &#123;</div><div class="line">  bind: function()&#123;</div><div class="line">    $btn.on(&apos;click&apos;, function()&#123;</div><div class="line">      console.log(this) //此处的this指的是被点击的$btn</div><div class="line">      this.showMsg(); //但是$btn对象上并没有showMessage这个方法，所以报错。</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">  showMsg: function()&#123;</div><div class="line">    console.log(&apos;饥人谷&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">-----------修改后</div><div class="line"></div><div class="line">var module= &#123;</div><div class="line">  bind: function()&#123;</div><div class="line">    $btn.on(&apos;click&apos;, function()&#123;</div><div class="line">      console.log(this);</div><div class="line">      this.showMsg(); </div><div class="line">    &#125;.bind(this)); //将this对象指向module对象</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">  showMsg: function()&#123;</div><div class="line">    console.log(&apos;饥人谷&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##原型链相关问题</p>
+<h4 id="问题7：有如下代码，解释Person、-prototype、-proto-、p、constructor之间的关联。"><a href="#问题7：有如下代码，解释Person、-prototype、-proto-、p、constructor之间的关联。" class="headerlink" title="问题7：有如下代码，解释Person、 prototype、__proto__、p、constructor之间的关联。"></a>问题7：有如下代码，解释Person、 prototype、<code>__proto__</code>、p、constructor之间的关联。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function Person(name)&#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">Person.prototype.sayName = function()&#123;</div><div class="line">    console.log(&apos;My name is :&apos; + this.name);</div><div class="line">&#125;</div><div class="line">var p = new Person(&quot;若愚&quot;)</div><div class="line">p.sayName();</div></pre></td></tr></table></figure>
+<p><strong>关联：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">p.__proto__ === Person.prototype</div><div class="line">Person.prototype.constructor === Person</div></pre></td></tr></table></figure>
+<h4 id="问题8：-上例中，对对象-p可以这样调用-p-toString-。toString是哪里来的-画出原型图-并解释什么是原型链"><a href="#问题8：-上例中，对对象-p可以这样调用-p-toString-。toString是哪里来的-画出原型图-并解释什么是原型链" class="headerlink" title="问题8： 上例中，对对象 p可以这样调用 p.toString()。toString是哪里来的? 画出原型图?并解释什么是原型链"></a>问题8： 上例中，对对象 p可以这样调用 p.toString()。toString是哪里来的? 画出原型图?并解释什么是原型链</h4><p><img src="http://upload-images.jianshu.io/upload_images/6555104-d8d73f093f45523e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>首先会向p中查找有没有<code>toString</code>方法，没有就向创建p的对象Person.prototype中查找，发现也没有，Person既是创建p的对象，同时也是对象Object创建的实例，所以向创建Person的Object.prototype中查找toSring()就查找到了。</p>
+<h4 id="问题9：对String做扩展，实现如下方式获取字符串中频率最高的字符"><a href="#问题9：对String做扩展，实现如下方式获取字符串中频率最高的字符" class="headerlink" title="问题9：对String做扩展，实现如下方式获取字符串中频率最高的字符"></a>问题9：对String做扩展，实现如下方式获取字符串中频率最高的字符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var str = &apos;ahbbccdeddddfg&apos;;</div><div class="line"></div><div class="line">String.prototype.getMostOften = function ()&#123;</div><div class="line">	var obj = &#123;&#125;;</div><div class="line">	for(var i = 0;i&lt;this.length; i++)&#123;</div><div class="line">		    var j =this[i];</div><div class="line">		    if(obj[j])&#123;</div><div class="line">		    	obj[j]++;</div><div class="line">		    &#125;</div><div class="line">		    else&#123;</div><div class="line">		    	obj[j]= 1;</div><div class="line">		    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	 var max = 0 ,key= 0 ;</div><div class="line"></div><div class="line">	 for(var k in obj)&#123;</div><div class="line">	 	if(obj[k]&gt;max)&#123;</div><div class="line">	 		max = obj[k];</div><div class="line">	 		key= k;</div><div class="line">	 	&#125;</div><div class="line"></div><div class="line">	 &#125;</div><div class="line"></div><div class="line">	 return max;</div><div class="line"></div><div class="line">&#125;;</div><div class="line">var ch = str.getMostOften();</div><div class="line">console.log(ch); //d , 因为d 出现了5次</div></pre></td></tr></table></figure>
+<h4 id="问题10：-instanceOf有什么作用？内部逻辑是如何实现的？"><a href="#问题10：-instanceOf有什么作用？内部逻辑是如何实现的？" class="headerlink" title="问题10： instanceOf有什么作用？内部逻辑是如何实现的？"></a>问题10： instanceOf有什么作用？内部逻辑是如何实现的？</h4><p>instanceof操作符，用于判断一个对象是不是某个类型的实例,<br>它是通过测试一个对象(object)的原型链上是否有某个构造函数的原型(prototype)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A instanceOf B; // 返回true/false</div></pre></td></tr></table></figure>
+<h2 id="继承相关问题"><a href="#继承相关问题" class="headerlink" title="继承相关问题"></a>继承相关问题</h2><h4 id="问题11：继承有什么作用"><a href="#问题11：继承有什么作用" class="headerlink" title="问题11：继承有什么作用?"></a>问题11：继承有什么作用?</h4><p>继承是指一个对象直接使用另一对象的属性和方法。<br>继承提高了代码复用性，减少重复劳动。体现了面向对象中的多态性。</p>
+<h4 id="问题12：-下面两种写法有什么区别"><a href="#问题12：-下面两种写法有什么区别" class="headerlink" title="问题12： 下面两种写法有什么区别?"></a>问题12： 下面两种写法有什么区别?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//方法1</div><div class="line">function People(name, sex)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.sex = sex;</div><div class="line">    this.printName = function()&#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var p1 = new People(&apos;饥人谷&apos;, 2)</div><div class="line"></div><div class="line">//方法2</div><div class="line">function Person(name, sex)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.sex = sex;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype.printName = function()&#123;</div><div class="line">    console.log(this.name);</div><div class="line">&#125;</div><div class="line">var p1 = new Person(&apos;若愚&apos;, 27);</div></pre></td></tr></table></figure>
+<p>方法1中printName方法在People的实例对象上，当每次创建一个People实例对象都会额外开辟内存去存放printName,方法2中的printName是写在原型上，当实例对象要使用该方法只需到原型链里调用就可以了，达到节省内存的效果。</p>
+<h4 id="问题13：-Object-create-有什么作用？兼容性如何？"><a href="#问题13：-Object-create-有什么作用？兼容性如何？" class="headerlink" title="问题13： Object.create 有什么作用？兼容性如何？"></a>问题13： Object.create 有什么作用？兼容性如何？</h4><p><code>Object.create(proto, [ propertiesObject ])</code></p>
+<p><strong>作用：</strong><br>使用指定的原型对象及其属性去创建一个新的对象</p>
+<p><br><br><code>proto</code>：用作新对象原型的对象<br><br><br><code>propertiesObject</code>：（可选的）一个为新对象定义额外属性的对象</p>
+<p><strong>用法例子</strong></p>
+<p>Student.prototype = Object.create(Person.prototype)<br>这里我们通过<code>Object.create</code>复制了一个新的prototype而不是直接把Person.prtotype直接赋值，因为引用关系，这样会导致后续修改子类的prototype也修改了父类的prototype，因为引用关系修改的是同一个值。</p>
+<p><strong>兼容性：</strong><br>Object.create是ES5方法，之前版本通过遍历属性也可以实现浅拷贝</p>
+<h4 id="问题14：-hasOwnProperty有什么作用？-如何使用？"><a href="#问题14：-hasOwnProperty有什么作用？-如何使用？" class="headerlink" title="问题14： hasOwnProperty有什么作用？ 如何使用？"></a>问题14： hasOwnProperty有什么作用？ 如何使用？</h4><ol>
+<li><code>hasOwnPerperty</code>可以判断一个对象包含的某个属性是否为自定义属性，而不是原型链上的属性。</li>
+<li><code>hasOwnPerperty</code>是JavaScript中唯一一个处理属性但是不查找原型链的函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//语法</div><div class="line">Object.hasOwnProperty(attributeName)</div></pre></td></tr></table></figure>
+<h4 id="问题15：如下代码中call的作用是什么"><a href="#问题15：如下代码中call的作用是什么" class="headerlink" title="问题15：如下代码中call的作用是什么?"></a>问题15：如下代码中call的作用是什么?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function Person(name, sex)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.sex = sex;</div><div class="line">&#125;</div><div class="line">function Male(name, sex, age)&#123;</div><div class="line">    Person.call(this, name, sex);    //这里的 call 有什么作用</div><div class="line">    this.age = age;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>起到了继承Person的作用，当new Male时，Male中的this指向创建的对象，call把Person中的this设置为创建的对象，就达到了继承Person属性的目的。</p>
+<h4 id="问题16：-补全代码，实现继承"><a href="#问题16：-补全代码，实现继承" class="headerlink" title="问题16： 补全代码，实现继承"></a>问题16： 补全代码，实现继承</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function Person(name, sex)&#123;</div><div class="line">	this.name = name;</div><div class="line">	this.sex = sex;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype.printName = function()&#123;</div><div class="line">	console.log(this.name);</div><div class="line">&#125;;    </div><div class="line"></div><div class="line">function Male(name, sex, age)&#123;</div><div class="line">	Person.call(this,name,age);</div><div class="line">	this.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Male.prototype = Object.create(Person.prototype);</div><div class="line">Male.prototype.constructor = Male;</div><div class="line">Male.prototype.printAge = function()&#123;</div><div class="line">   console.log(&quot;My age is &quot;+this.age);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">var ruoyu = new Male(&apos;若愚&apos;, &apos;男&apos;, 27);</div><div class="line">ruoyu.printName();</div><div class="line">ruoyu.printAge();</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/this and inheritance/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-OOP-and-prototype" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/OOP-and-prototype/">OOP and prototype</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/OOP-and-prototype/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="OOP-指什么？有哪些特性"><a href="#OOP-指什么？有哪些特性" class="headerlink" title="OOP 指什么？有哪些特性"></a>OOP 指什么？有哪些特性</h3><ul>
+<li><p><code>Object-oriented programming</code>的缩写，即面向对象程序设计，其中两个最重要的概念就是类和对象。类只是具备了某些功能和属性的抽象模型，类在实例化之后得到的实体就是对象。</p>
+</li>
+<li><p>特性：</p>
+<ol>
+<li>继承性：子类自动继承其父级类中的属性和方法，并可以添加新的属性和方法或者对部分属性和方法进行重写。继承增加了代码的可重用性。</li>
+<li>多态性：子类继承了来自父级类中的属性和方法，并对其中部分方法进行重写。</li>
+<li>封装性：将一个类的使用和实现分开，只保留部分接口和方法与外部联系。</li>
+</ol>
+</li>
+</ul>
+<h3 id="如何通过构造函数的方式创建一个拥有属性和方法的对象"><a href="#如何通过构造函数的方式创建一个拥有属性和方法的对象" class="headerlink" title="如何通过构造函数的方式创建一个拥有属性和方法的对象?"></a>如何通过构造函数的方式创建一个拥有属性和方法的对象?</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function Person(name,age)&#123;</div><div class="line">	this.name = name;</div><div class="line">	this.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype.sayName = function ()&#123;</div><div class="line">	console.log(this.name);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">var p1 = new Person();</div></pre></td></tr></table></figure>
+<p><strong>new一个对象发生了什么</strong></p>
+<ol>
+<li>创建了一个空对象 作为this</li>
+<li><code>this.__proto__</code>指向构造函数的prototype</li>
+<li>运行构造函数</li>
+<li>返回this（若构造函数没有return）</li>
+</ol>
+<h3 id="prototype-是什么？有什么特性"><a href="#prototype-是什么？有什么特性" class="headerlink" title="prototype 是什么？有什么特性"></a>prototype 是什么？有什么特性</h3><ul>
+<li>我们创建的每个函数都有一个prototype属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含所有实例共享的属性和方法。</li>
+<li>prototype就是通过调用构造函数而创建的那个对象实例的原型对象。通常我们可以将实例对象的公共属性和方法放在prototype对象中。好处是节省空间，当有很多对象时，不用每次有一个对象就去重复创建一份方法。</li>
+</ul>
+<p>特性：</p>
+<ol>
+<li>每个函数都有一个prototype属性，指向一个对象，叫做原型对象</li>
+<li>所有对象都有<code>__proto__</code></li>
+<li>对象<code>.__proto__</code>=== 构造函数.prototype</li>
+<li>访问一个对象的属性时，如果对象有这个属性，就获取到了，如果没有这个属性，则从<code>__proto__</code>里面去找，如果还是没有找到，则从原型对象prototype里的proto中去寻找。</li>
+</ol>
+<h3 id="画出如下代码的原型图"><a href="#画出如下代码的原型图" class="headerlink" title="画出如下代码的原型图"></a>画出如下代码的原型图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function People (name)&#123;</div><div class="line">  this.name = name;</div><div class="line">  this.sayName = function()&#123;</div><div class="line">    console.log(&apos;my name is:&apos; + this.name);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">People.prototype.walk = function()&#123;</div><div class="line">  console.log(this.name + &apos; is walking&apos;);  </div><div class="line">&#125;</div><div class="line"></div><div class="line">var p1 = new People(&apos;饥人谷&apos;);</div><div class="line">var p2 = new People(&apos;前端&apos;);</div></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1filloz3jtdj20k70grjro.jpg" alt=""></p>
+<h3 id="创建一个-Car-对象，拥有属性name、color、status；拥有方法run，stop，getStatus"><a href="#创建一个-Car-对象，拥有属性name、color、status；拥有方法run，stop，getStatus" class="headerlink" title="创建一个 Car 对象，拥有属性name、color、status；拥有方法run，stop，getStatus"></a>创建一个 Car 对象，拥有属性name、color、status；拥有方法run，stop，getStatus</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">function Car (name, color, status)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.color = color;</div><div class="line">    this.status = status;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Car.prototype.run = function() &#123;</div><div class="line">    this.status = &quot;running&quot;;</div><div class="line">    console.log(this.status);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.stop = function() &#123;</div><div class="line">    this.status = &quot;stop&quot;;</div><div class="line">    console.log(this.status);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.getStatus = function() &#123;</div><div class="line">    console.log(this.status);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">var p1 = new Car(&quot;宝马&quot;,&quot;black&quot;,&quot;run&quot;);</div><div class="line">p1.run();</div><div class="line">p1.stop();</div><div class="line">p1.getStatus();</div></pre></td></tr></table></figure>
+<h3 id="创建一个-GoTop-对象，当-new-一个-GotTop-对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法"><a href="#创建一个-GoTop-对象，当-new-一个-GotTop-对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法" class="headerlink" title="创建一个 GoTop 对象，当 new 一个 GotTop 对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法"></a>创建一个 GoTop 对象，当 new 一个 GotTop 对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法</h3><ol>
+<li><code>ct</code>属性，GoTop 对应的 DOM 元素的容器</li>
+<li><code>target</code>属性， GoTop 对应的 DOM 元素</li>
+<li><code>bindEvent</code> 方法， 用于绑定事件</li>
+<li><code>createNode</code> 方法， 用于在容器内创建节点</li>
+</ol>
+<p><a href="http://js.jirengu.com/dulax/3/edit?css,js,console,output" target="_blank" rel="external">代码</a></p>
+<h3 id="使用木桶布局实现一个图片墙"><a href="#使用木桶布局实现一个图片墙" class="headerlink" title="使用木桶布局实现一个图片墙"></a>使用木桶布局实现一个图片墙</h3><p>效果图<br><img src="http://ww1.sinaimg.cn/large/d6c04639gy1filndcqddug20gn0a5x6s.gif" alt=""></p>
+<p><a href="https://github.com/MorganXie/Demos/blob/master/Barrels-Layout/Barrels-Layout.html" target="_blank" rel="external">代码</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/OOP-and-prototype/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Carousel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/Carousel/">Carousel</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/Carousel/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:48:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="轮播的实现原理是怎样的？如果让你来实现，你会抽象出哪些函数-or接口-供使用？（比如-play-）"><a href="#轮播的实现原理是怎样的？如果让你来实现，你会抽象出哪些函数-or接口-供使用？（比如-play-）" class="headerlink" title="轮播的实现原理是怎样的？如果让你来实现，你会抽象出哪些函数(or接口)供使用？（比如 play()）"></a>轮播的实现原理是怎样的？如果让你来实现，你会抽象出哪些函数(or接口)供使用？（比如 play()）</h3><h4 id="左右滚动无限循环轮播的实现"><a href="#左右滚动无限循环轮播的实现" class="headerlink" title="左右滚动无限循环轮播的实现"></a>左右滚动无限循环轮播的实现</h4><p><strong>原理</strong>：</p>
+<ol>
+<li><p>是将所有图片的水平排列，但是视口只有一张图片的宽度，超出范围的图片隐藏，切换图片的时候实际上是包含全部水平图片的大盒子在移动。</p>
+</li>
+<li><p>在图片列表开头和结尾分别克隆最后一张图和第一张图。图片的切换，就是改变绝对定位元素的left值。</p>
+</li>
+<li>当我们展示到最后一张图往后点或者第一张图往前点的时候，会先展示我们之前克隆好的图，同时把元素回归到正确的位置。即真正的第一张或者最后一张的位置。</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/6555104-bf552c24d92f949e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="渐变轮播"><a href="#渐变轮播" class="headerlink" title="渐变轮播"></a>渐变轮播</h4><p><strong>原理</strong></p>
+<ol>
+<li><p>图片使用绝对定位显示在同一个位置上，被轮播的时候设置为<code>display`:block`,其他设置为</code>display:none``</p>
+</li>
+<li><p>利用fadeOut,fadeIn控制当前的元素隐藏，下一个元素显示<br>重点是对应的索引值的变化。</p>
+</li>
+</ol>
+<h4 id="抽象出的方法：-playNext-playPre-setBullet"><a href="#抽象出的方法：-playNext-playPre-setBullet" class="headerlink" title="抽象出的方法： playNext() ,playPre() ,setBullet()"></a>抽象出的方法： <code>playNext()</code> ,<code>playPre()</code> ,<code>setBullet()</code></h4><h3 id="左右滚动无限循环轮播效果"><a href="#左右滚动无限循环轮播效果" class="headerlink" title="左右滚动无限循环轮播效果"></a>左右滚动无限循环轮播效果</h3><p><a href="http://js.jirengu.com/gejeb/1/edit?html,css,output" target="_blank" rel="external">代码</a></p>
+<h3 id="实现一个渐变轮播效果。"><a href="#实现一个渐变轮播效果。" class="headerlink" title="实现一个渐变轮播效果。"></a>实现一个渐变轮播效果。</h3><p><a href="http://js.jirengu.com/japad/1/edit?html,css,output" target="_blank" rel="external">代码</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/Carousel/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Lazy Load" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -226,19 +674,574 @@
 
 
   
-    <article id="post-setTimeout-and-Closure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-jQuery DOM and Ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/setTimeout-and-Closure/">setTimeout and Closure </a>
+      <a class="article-title" href="/myBlog/2017/10/09/jQuery DOM and Ajax/">jQuery DOM and Ajax</a>
     </h1>
   
 
         
-        <a href="/myBlog/2017/10/09/setTimeout-and-Closure/" class="archive-article-date">
+        <a href="/myBlog/2017/10/09/jQuery DOM and Ajax/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:47:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="jQuery-中，-document-ready-是什么意思？"><a href="#jQuery-中，-document-ready-是什么意思？" class="headerlink" title="jQuery 中， $(document).ready()是什么意思？"></a>jQuery 中， $(document).ready()是什么意思？</h2><ul>
+<li><p><code>$(document).ready()</code>的作用是当文档中的DOM节点加载完成后，在加载外部图片和资源前，执行ready()里面的操作。</p>
+</li>
+<li><p><code>window.load</code>是整个页面加载完成（包括图片，css，脚本等）之后再执行onload()中的操作。并且 <code>window.onload</code>不能同时编写多个，如果有多个<code>window.onload</code>方法，只会执行一个 （后者会覆盖前者）。</p>
+</li>
+</ul>
+<p><strong>注意:</strong><br><code>$(document).ready(function(){})</code>可以简写成<code>$(function(){})</code>。</p>
+<h2 id="node-html-和-node-text-的区别"><a href="#node-html-和-node-text-的区别" class="headerlink" title="$node.html()和$node.text()的区别?"></a>$node.html()和$node.text()的区别?</h2><ul>
+<li><code>.html()</code>获取集合中第一个匹配元素的HTML内容或设置每一个匹配元素的html内容。（不解析后代元素）</li>
+<li><code>.text()</code>仅仅得到匹配元素集合中每个元素的文本内容，包括他们的后代，或设置匹配元素集合中每个元素的文本内容为指定的文本内容。</li>
+</ul>
+<ul>
+<li>当包含参数的时候，html(str)为替换html内容为参数值，text(str)为替换文本内容为参数值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">	&lt;div class=&quot;demo-container&quot;&gt;</div><div class="line">	  &lt;div class=&quot;demo-box&quot;&gt;&lt;/div&gt;</div><div class="line">	  &lt;ul&gt;</div><div class="line">	    &lt;li&gt;list item 1&lt;/li&gt;</div><div class="line">	  &lt;/ul&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">	</div><div class="line">	</div><div class="line">$( &quot;div.demo-container&quot; ).text()  //  list item1 </div><div class="line">$( &quot;div.demo-container&quot; ).html()  //  &lt;div class=&quot;demo-box&quot;&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;list item 1&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<blockquote>
+<p>The .text() method cannot be used on form inputs or scripts. To set  or get the text value of input or textarea elements, use the .val() method. To get the value of a script element, use the .html() method.</p>
+</blockquote>
+<h2 id="extend-的作用和用法"><a href="#extend-的作用和用法" class="headerlink" title="$.extend 的作用和用法?"></a>$.extend 的作用和用法?</h2><p><code>.extend([deep], target, object1, [objectN])</code></p>
+<p><strong>扩展方法，将对象的所有属性都添加到目标对象。</strong></p>
+<p><code>$.extend</code>还可以深拷贝。</p>
+<p><strong>目标对象（第一个参数）将被修改，并且将通过$.extend()返回</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">  var obj1 = &#123;a:1&#125;;</div><div class="line">  var obj2 = &#123;b:2,c:3&#125;;</div><div class="line">  var obj3 = &#123;b:10,d:4&#125;;</div><div class="line">  var  obj4 = &#123;&#125;             //如果想保留原对象，可以通过传递一个空对象作为目标对象</div><div class="line">  $.extend(obj1,obj2)        //obj1 =&#123; a:1,b:2,c:3&#125;;</div><div class="line">  $.extend(obj1,obj2,obj3)   //obj1 = &#123; a:1 ,b:10 ,c:3 ,d:4&#125;</div><div class="line"> </div><div class="line">  //两种方式将目标对象传递给空对象</div><div class="line">  $.extexd(obj4, obj1, obj2, obj3)</div><div class="line">  var obj5 = $.extend(&#123;&#125;,obj1, obj2, obj3)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="jQuery-的链式调用是什么？"><a href="#jQuery-的链式调用是什么？" class="headerlink" title="jQuery 的链式调用是什么？"></a>jQuery 的链式调用是什么？</h2><ul>
+<li>链式调用：使用jQuery方法时，对象方法返回的是对象本身，可以调用对此对象的其他jQuery方法，实现连续调用多个方法<br>例：<code>$(this).siblings().removeClass(&#39;active&#39;);</code></li>
+</ul>
+<h2 id="jQuery-中-data-函数的作用"><a href="#jQuery-中-data-函数的作用" class="headerlink" title="jQuery 中 data 函数的作用"></a>jQuery 中 data 函数的作用</h2><p><code>data([key],[value])</code><br>在元素上存放或读取数据,返回jQuery对象。</p>
+<p><code>$().data(key, value), $().data(obj)</code> //是为jQuery对象中的所有DOM对象分别附加数据<br><code>$().data(key), $().data()</code>  //从jQuery对象上读数据</p>
+<h2 id="写出以下功能对应的-jQuery-方法："><a href="#写出以下功能对应的-jQuery-方法：" class="headerlink" title="写出以下功能对应的 jQuery 方法："></a>写出以下功能对应的 jQuery 方法：</h2><ul>
+<li>给元素 $node 添加 class active，给元素 $noed 删除 class active</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$node.addClass(&apos;active);</div><div class="line">$node.removeClass(&apos;active&apos;);</div></pre></td></tr></table></figure>
+<ul>
+<li>展示元素$node, 隐藏元素$node</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$node.show();</div><div class="line">$node.hidden();</div></pre></td></tr></table></figure>
+<ul>
+<li>获取元素$node 的 属性: id、src、title， 修改以上属性</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//获取</div><div class="line">$node.attr(&apos;id&apos;);</div><div class="line">$node.attr(&apos;src&apos;);</div><div class="line">$node.attr(&apos;titile&apos;);</div><div class="line"></div><div class="line"></div><div class="line">//修改</div><div class="line"></div><div class="line">$node.attr(&apos;id&apos;,&apos;newId&apos;);</div><div class="line">$node.attr(&apos;src&apos;,&apos;newSrc&apos;);</div><div class="line">$node.attr(&apos;title&apos;,&apos;newTitile&apos;);</div></pre></td></tr></table></figure>
+<ul>
+<li>给$node 添加自定义属性data-src</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$node.attr(&apos;data-src&apos;,&apos;xxx&apos;)</div></pre></td></tr></table></figure>
+<ul>
+<li>在$ct 内部最开头添加元素$node</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ct.prepend($node);</div></pre></td></tr></table></figure>
+<ul>
+<li>在$ct 内部最末尾添加元素$node</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ct.append($node);</div></pre></td></tr></table></figure>
+<ul>
+<li>删除$node</li>
+</ul>
+<p><code>$node.remove();</code></p>
+<ul>
+<li>把$ct里内容清空</li>
+</ul>
+<p><code>$ct.empty();</code></p>
+<ul>
+<li>在$ct 里设置 html <div class="btn"></div></li>
+</ul>
+<p><code>$ct.html(&#39;&lt;div class=&quot;btn&quot;&gt;&lt;/div&gt;&#39;)</code></p>
+<ul>
+<li>获取、设置$node 的宽度、高度(分别不包括内边距、包括内边距、包括边框、包括外边距)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$node.width();//不包括内边距宽度,仅包括内容</div><div class="line">$node.height();//不包括内边距高度,仅包括内容</div><div class="line">$node.innerWidth();//包括内容和内边距宽度</div><div class="line">$node.innerHeight();//包括内容和内边距高度</div><div class="line">$node.outerWidth();//包括内容,内边距,边框宽度</div><div class="line">$node.outerHeight();//包括内容,内边距,边框高度</div><div class="line">$node.outerHeight(true);//包括内容,内边距,边框,外边距高度</div><div class="line">$node.outerWidth(true);//包括内容,内边距,边框,外边距宽度</div></pre></td></tr></table></figure>
+<ul>
+<li>获取窗口滚动条垂直滚动距离</li>
+</ul>
+<p><code>$(window).scrollTop()</code></p>
+<ul>
+<li>获取$node 到根节点水平、垂直偏移距离</li>
+</ul>
+<p><code>$node.offset();</code></p>
+<ul>
+<li>修改$node 的样式，字体颜色设置红色，字体大小设置14px</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$node.css(&#123;</div><div class="line">		&quot;font-size&quot;:&quot;14px&quot;,</div><div class="line">		&quot;color&quot;:&quot;red&quot;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>遍历节点，把每个节点里面的文本内容重复一遍</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$node.each(function ()&#123;</div><div class="line">	console.log($(this).text());</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>从$ct 里查找 class 为 .item的子元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ct.find(&apos;.item&apos;) ;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>获取$ct 里面的所有孩子</li>
+</ul>
+<p><code>$ct.childern()</code></p>
+<ul>
+<li>对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$node.parents(&apos;.ct&apos;).find(&apos;.panel&apos;);</div></pre></td></tr></table></figure>
+<ul>
+<li>获取选择元素的数量</li>
+</ul>
+<p><code>$node.length;</code></p>
+<ul>
+<li>获取当前元素在兄弟中的排行</li>
+</ul>
+<p><code>$node.index();</code></p>
+<h2 id="用jQuery实现以下操作"><a href="#用jQuery实现以下操作" class="headerlink" title="用jQuery实现以下操作"></a>用jQuery实现以下操作</h2><ol>
+<li>当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色</li>
+<li>当窗口滚动时，获取垂直滚动距离</li>
+<li>当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</li>
+<li>当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</li>
+<li>当选择 select 后，获取用户选择的内容</li>
+</ol>
+<p><a href="http://js.jirengu.com/miqav/1/edit?html,console,output" target="_blank" rel="external">代码</a></p>
+<h2 id="用-jQuery-ajax-实现如下效果。-当点击加载更多会加载数据展示到页面"><a href="#用-jQuery-ajax-实现如下效果。-当点击加载更多会加载数据展示到页面" class="headerlink" title="用 jQuery ajax 实现如下效果。`当点击加载更多会加载数据展示到页面"></a>用 jQuery ajax 实现如下效果。`当点击加载更多会加载数据展示到页面</h2><p><a href="https://github.com/MorganXie/Demos/tree/master/jQuery-loadMore" target="_blank" rel="external">代码</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery DOM and Ajax/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-jQuery" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/jQuery/">jQuery</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/jQuery/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:46:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##jQuery 能做什么？</p>
+<p>jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。<br>jQuery是一个JavaScript函数库，可以方便地：</p>
+<ul>
+<li>选择dom元素</li>
+<li>dom操作</li>
+<li>事件处理</li>
+<li>特效处理</li>
+<li>ajax</li>
+<li>链式操作</li>
+</ul>
+<h2 id="jQuery-对象和-DOM-原生对象有什么区别？如何转化？"><a href="#jQuery-对象和-DOM-原生对象有什么区别？如何转化？" class="headerlink" title="jQuery 对象和 DOM 原生对象有什么区别？如何转化？"></a>jQuery 对象和 DOM 原生对象有什么区别？如何转化？</h2><p>####区别：</p>
+<p><strong>DOM对象 ：W3C标准用于操作文档的API。具体点来说就是指 HTML 文本中的所有被标签标记的东西 ，在js里可以用 getElementById 等传统的方法获得的对象，拥有原生对象的属性和方法。<br>jQuery对象：将DOM原生对象进行封装后得到的类数组对象</strong></p>
+<p>####注意：</p>
+<p>jQuery对象只能用jQuery对象的方法<br>DOM对象只能使用DOM对象的方法</p>
+<p>####转化：</p>
+<p>jquery提供了两种方法将一个jquery对象转换成一个DOM对象，[index]和get(index)。<br>使用$(DOM对象)就可以将DOM对象转化为jQuery对象</p>
+<p>##jQuery中如何绑定事件？bind、unbind、delegate、live、on、off都有什么作用？推荐使用哪种？使用on绑定事件使用事件代理的写法？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//bind用于绑定事件，古老写法，不推荐</div><div class="line">$(selector).bind(event,[data],function)</div><div class="line"></div><div class="line">//unbind用于解绑事件，古老写法，不推荐</div><div class="line">$(selector).unbind(event,[function])</div><div class="line"></div><div class="line">//delegate用于事件代理，古老写法，不推荐</div><div class="line">$(selector).delegate(childSelector,event,[data],function)</div><div class="line"></div><div class="line">//live() 方法为被选元素附加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。不推荐使用</div><div class="line">$(selector).live(event,[data],function)</div></pre></td></tr></table></figure>
+<p><code>.on( events [,selector ] [,data ], handler(eventObject) )</code><br><strong>增加事件处理函数</strong></p>
+<ol>
+<li>events：事件类型和可选的命名空间，或仅仅是命名空间，比如”click”, “keydown.myPlugin”, 或者 “.myPlugin”，一个或多个</li>
+<li>selector：选择器，用于过滤出被选中的元素中能触发事件的后代元素。</li>
+<li>data：传递给事件处理函数的event.data<br>handler(eventObject)：事件被触发时的执行函数。若该函数只是要执行return false，该参数位置可以直接简写成 false</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 普通事件绑定，最简单的用法</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, function(e)&#123;</div><div class="line">    console.log(this); //点击的元素</div><div class="line">    console.log(e); // 事件，e.target 事件的对象</div><div class="line">&#125;);</div><div class="line">// 事件委托或者事件代理，想让div 下面所有的span绑定事件，可以把事件绑定到div上</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, &apos;span&apos;, function(e)&#123;</div><div class="line">    console.log(this);</div><div class="line">    console.log(e);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 可以在绑定的时候给事件处理程序传递一些参数</div><div class="line">$(&apos;div&apos;).on(&apos;click&apos;, &#123;name: &apos;Byron&apos;, age: 24&#125;, function(e)&#123;</div><div class="line">    console.log(e.data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>命名空间的作用：解绑事件时做一个区分</strong></p>
+<p>#click.hello事件解绑，但是click事件不受影响</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(&apos;.box&gt;ul&apos;).on(&apos;click&apos;,3,function(e)&#123;</div><div class="line">   console.log(e.data)</div><div class="line"> &#125;)</div><div class="line"> $(&apos;.box&gt;ul&apos;).on(&apos;click.hello&apos;,&apos;li&apos;,function()&#123;</div><div class="line">   console.log(this)</div><div class="line">   var str = $(this).text()</div><div class="line">   $(&apos;#wrap&apos;).text(str)</div><div class="line"> &#125;)</div><div class="line"> $(&apos;.box&gt;ul&apos;).off(&apos;click.hello&apos;)</div></pre></td></tr></table></figure>
+<p><code>.off( events [, selector ] [, handler ] )</code><br><strong>移除一个事件处理函数</strong></p>
+<h2 id="jQuery-如何展示-隐藏元素？"><a href="#jQuery-如何展示-隐藏元素？" class="headerlink" title="jQuery 如何展示/隐藏元素？"></a>jQuery 如何展示/隐藏元素？</h2><ul>
+<li>.hide([duration ] [,easing ] [,complete ])<br>隐藏元素，没有参数的时候等同于直接设置display:none属性</li>
+<li>.show( [duration ] [, easing ] [, complete ] )<br>用于显示元素，用法和hide类似</li>
+<li>.toggle( [duration ] [, easing ] [, complete ] )</li>
+</ul>
+<p>toggle是切换的意思，用来切换元素的隐藏、显示，类似于toggleClass<br>事件处理套件也有一个名为.toggle()方法。哪一个被调用取决于传递的参数的设置</p>
+<ol>
+<li>duration：动画持续多久</li>
+<li>easing：表示过渡使用哪种缓动函数，jQuery自身提供”linear” 和 “swing”</li>
+<li>complete：在动画完成时执行的函数,先完成动画，后执行函数</li>
+</ol>
+<h2 id="jQuery-动画如何使用？"><a href="#jQuery-动画如何使用？" class="headerlink" title="jQuery 动画如何使用？"></a>jQuery 动画如何使用？</h2><h4 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h4><ul>
+<li>.fadeIn( [duration ] [, easing ] [, complete ] )<br>通过淡入的方式显示匹配元素</li>
+<li>.fadeOut( [duration ] [, easing ] [, complete ] )<br>通过淡出的方式隐藏匹配元素</li>
+<li>.fadeTo( duration, opacity [, easing ] [, complete ] )<br>调整匹配元素的透明度，方法通过匹配元素的不透明度做动画效果</li>
+<li>.fadeToggle( [duration ] [, easing ] [, complete ] )</li>
+</ul>
+<h4 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h4><ul>
+<li>.slideDown( [duration ] [, easing ] [, complete ] )<br>用滑动动画显示一个匹配元素</li>
+<li>.slideUp( [duration ] [, easing ] [, complete ] )<br>用滑动动画隐藏一个匹配元素</li>
+<li>.slideToggle( [duration ] [, easing ] [, complete ] )<br>用滑动动画显示或隐藏一个匹配元素</li>
+</ul>
+<p>####自定义动画</p>
+<ul>
+<li>.animate( properties [, duration ] [, easing ] [, complete ] )<br>properties是一个CSS属性和值的对象,动画将根据这组对象移动。</li>
+</ul>
+<h2 id="如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？"><a href="#如何设置和获取元素内部-HTML-内容？如何设置和获取元素内部文本？" class="headerlink" title="如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？"></a>如何设置和获取元素内部 HTML 内容？如何设置和获取元素内部文本？</h2><ul>
+<li><p><code>html([string])</code><br>读写两用的方法，用于获取/修改元素的innerHTML</p>
+</li>
+<li><p><code>$(&#39;div&#39;).html()</code> //没有参数，获取元素的innerHTML</p>
+</li>
+<li><code>$(&#39;div&#39;).html(&#39;123&#39;)</code> //有参数，参数内容即为修改后的元素innerHTML</li>
+<li><code>text()</code>读写两用的方法，和html方法类似，用于获取/修改元素的innerText值</li>
+</ul>
+<h2 id="如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"><a href="#如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？" class="headerlink" title="如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？"></a>如何设置和获取表单用户输入或者选择的内容？如何设置和获取元素属性？</h2><ul>
+<li><strong>.val([value])<br></strong><br>读写双用的方法，用来处理input的value，设置和获取表单用户输入或者选择的内容,当方法没有参数的时候返回input的value值，当传递了一个参数的时候，方法修改input的value值为参数值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&apos;input&apos;).val() //没有参数的时候返回input的value值</div><div class="line">$(&apos;input&apos;).val(&apos;newValue&apos;); //当传递了一个参数的时候，将参数值设为input的value值</div><div class="line">$(&apos;input&apos;)[0].value = &quot;hello&quot; 用原生DOM的方式设置值</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>.attr(attributeName)</strong><br><br>获取元素的属性。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; value=&quot;hello&quot;&gt;</div><div class="line">   &lt;script&gt;</div><div class="line">       console.log($(&apos;input&apos;).attr(&quot;type&quot;)) //text</div><div class="line">   &lt;/script&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>.removeAttr(attributeName)</strong><br><br>移除特定元素的某个属性。</li>
+</ul>
+<p>为匹配的元素集合中的每个元素中移除一个属性</p>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p><a href="http://js.jirengu.com/guji/1/edit?html,css,js,output" target="_blank" rel="external">dom</a><br><a href="http://js.jirengu.com/bitan/1/edit?output" target="_blank" rel="external">dom</a><br><a href="http://js.jirengu.com/rafij/1/edit?html,css,js,output" target="_blank" rel="external">slidup</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-cross-domain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/cross-domain/">cross-domain</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/cross-domain/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是同源策略"><a href="#什么是同源策略" class="headerlink" title="什么是同源策略"></a>什么是同源策略</h2><ul>
+<li><p>浏览器出于安全方面的考虑，只允许与本域下的接口交互。不同源的客户端脚本在没有明确授权的情况下，不能读写对方的资源。</p>
+</li>
+<li><p>同源指的是 一样的协议 ，一样的域名，一样的端口访问，3者要是有一个是不一样的，http请求就是跨域请求。</p>
+</li>
+</ul>
+<h2 id="什么是跨域？跨域有几种实现形式"><a href="#什么是跨域？跨域有几种实现形式" class="headerlink" title="什么是跨域？跨域有几种实现形式"></a>什么是跨域？跨域有几种实现形式</h2><h4 id="因为浏览器的同源策略限制，不允许不同源下的对象互相操作。去访问不同域的对象相互操作的就叫跨域。"><a href="#因为浏览器的同源策略限制，不允许不同源下的对象互相操作。去访问不同域的对象相互操作的就叫跨域。" class="headerlink" title="因为浏览器的同源策略限制，不允许不同源下的对象互相操作。去访问不同域的对象相互操作的就叫跨域。"></a>因为浏览器的同源策略限制，不允许不同源下的对象互相操作。去访问不同域的对象相互操作的就叫跨域。</h4><ol>
+<li><p>JSONP：利用script的src标签的跨域属性，传递一个callback参数给服务端来获取其他源的数据</p>
+</li>
+<li><p>CORS ： 在第三方服务器端增加代码，返回头部设置Access-Control-Allow-Origin设置成指定的访问地址。</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;http://a.jirengu.com:8080&quot;); </div><div class="line">//res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);</div></pre></td></tr></table></figure>
+<ol>
+<li><p>降域：浏览器想要操作iframe标签中引入的网站，但是URL和本页面的URL不同，二级域名相同，以如下情况所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">http://a.xiexuan.com:8080/b.html</div><div class="line">http://b.xiexuan.com:8080/a.html</div><div class="line">document.domain = &apos;xiexuan.com&apos; //便通过降域的方式使两个网站可以实现跨域</div></pre></td></tr></table></figure>
+</li>
+<li><p>postMessage : 对不同域下的URL发送数据，如果对方接受数据，就可以使用，如果对方没有监控该数据，就无用。使用window.postMessage(值,传递的地址) 方法进行跨域通信。</p>
+</li>
+</ol>
+<h2 id="JSONP-的原理是什么"><a href="#JSONP-的原理是什么" class="headerlink" title="JSONP 的原理是什么"></a>JSONP 的原理是什么</h2><ul>
+<li><p>利用<code>&lt;script&gt;</code>标签没有跨域限制的特性，比如引入线上的jquery库（其他域下的js），来达到与第三方通讯的目的。</p>
+</li>
+<li><p>在本页面中创建script标签，src的地址执行后端接口，最后加个参数callback=接口函数名；（由此约定函数名）</p>
+</li>
+</ul>
+<p><code>&lt;script src=&quot;http://www.weather.com.cn?city=hangzhou&amp;callback=showWeather&quot;&gt;&lt;/script&gt;</code></p>
+<ul>
+<li>接口函数的名字和对数据的操作需要自己声明和定义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"> 		function showWeather(json)&#123;</div><div class="line">	&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="CORS是什么"><a href="#CORS是什么" class="headerlink" title="CORS是什么"></a>CORS是什么</h2><p><strong>CORS 全称是跨域资源共享（Cross-Origin Resource Sharing），是一种 ajax 跨域请求资源的方式</strong></p>
+<p>当你使用 XMLHttpRequest 发送请求时，浏览器发现该请求不符合同源策略，会给该请求加一个请求头：Origin，后台进行一系列处理，如果服务器端确定接受请求，则在返回结果中加入一个响应头：Access-Control-Allow-Origin。浏览器判断该相应头中是否包含 Origin 的值，如果有则浏览器会处理响应，我们就可以拿到响应数据，如果不包含浏览器直接驳回，这时我们无法拿到响应数据。所以 CORS 的表象是让你觉得它与同源的 ajax 请求没啥区别，代码完全一样.</p>
+<p>在服务器增加代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;http://a.xiexuan.com:8080&quot;); </div><div class="line">//res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;); // *表示服务器允许所有的跨域请求。</div></pre></td></tr></table></figure>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><ul>
+<li><a href="https://github.com/MorganXie/Demos/tree/master/%E8%B7%A8%E5%9F%9F/jsonp" target="_blank" rel="external">jsonp实现</a></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/thumbnail/d6c04639gy1fi4a6vj8k5g20gn09fu10.gif" alt=""></p>
+<ul>
+<li><a href="https://github.com/MorganXie/Demos/tree/master/%E8%B7%A8%E5%9F%9F/cors" target="_blank" rel="external">cors实现</a></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1fi49j9ptb4g20gn09fe84.gif" alt=""></p>
+<ul>
+<li><a href="https://github.com/MorganXie/Demos/tree/master/%E8%B7%A8%E5%9F%9F/%E9%99%8D%E5%9F%9F" target="_blank" rel="external">降域实现</a></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1fi49knq7xng20gn09fb2k.gif" alt=""></p>
+<ul>
+<li><a href="https://github.com/MorganXie/Demos/tree/master/跨域/postMessage" target="_blank" rel="external">postMessage实现</a></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/mw690/d6c04639gy1fi4a4tvglkg20gn09fe8d.gif" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/cross-domain/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/ajax/">ajax</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/ajax/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:45:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ajax-是什么？有什么作用？"><a href="#ajax-是什么？有什么作用？" class="headerlink" title="ajax 是什么？有什么作用？"></a>ajax 是什么？有什么作用？</h2><h5 id="传统的HTTP请求"><a href="#传统的HTTP请求" class="headerlink" title="传统的HTTP请求"></a>传统的HTTP请求</h5><ol>
+<li>浏览器向服务器发送请求</li>
+<li>服务器根据浏览器传来数据生成response</li>
+<li>服务器把response返回给浏览器</li>
+<li>浏览器刷新整个页面显示最新数据</li>
+</ol>
+<p><strong><em>这个过程是同步的，顺序执行。需要刷新整个网页，效率低，用户体验差</em></strong></p>
+<h5 id="AJAX请求"><a href="#AJAX请求" class="headerlink" title="AJAX请求"></a>AJAX请求</h5><p>AJAX 在浏览器与 Web 服务器之间使用异步数据传输（HTTP 请求）从服务器获取数据。这里的异步是指脱离当前浏览器页面的请求、加载等单独执行，这意味着可以在不重新加载整个网页的情况下，通过JavaScript发送请求、接受服务器传来的数据，然后操作DOM将新数据对网页的某部分进行更新，使用Ajax最直观的感受是向服务器获取新数据不需要刷新页面等待了。</p>
+<p><strong><em>ajax是一种技术方案，但并不是一种新技术。它依赖现有的CSS/HTML/Javascript，而其中最核心的依赖是浏览器提供的XMLHttpRequest对象。</em></strong></p>
+<h2 id="前后端开发联调需要注意哪些事情？后端接口完成前如何-mock-数据？"><a href="#前后端开发联调需要注意哪些事情？后端接口完成前如何-mock-数据？" class="headerlink" title="前后端开发联调需要注意哪些事情？后端接口完成前如何 mock 数据？"></a>前后端开发联调需要注意哪些事情？后端接口完成前如何 mock 数据？</h2><ol>
+<li>约定接口：确定接口名称及请求和响应的格式，请求的参数名称、响应的数据格式；</li>
+<li>约定数据：有哪些需要传输的数据，数据类型是什么；</li>
+<li>根据这些数据整理成接口文档。</li>
+</ol>
+<h4 id="什么是mock数据"><a href="#什么是mock数据" class="headerlink" title="什么是mock数据"></a>什么是mock数据</h4><p>作为前端经常需要模拟后台数据，我们称之为mock。通常的方式为自己搭建一个服务器，返回我们想要的数据。</p>
+<p>####如何mock数据<br>前端人员可以自己使用服务器框架搭建一个模拟服务器环境(如：express&amp;nodejs，xampp或者server-mock)， 在本地的平台上mock数据，事先进行调试。</p>
+<h2 id="点击按钮，使用-ajax-获取数据，如何在数据到来之前防止重复点击"><a href="#点击按钮，使用-ajax-获取数据，如何在数据到来之前防止重复点击" class="headerlink" title="点击按钮，使用 ajax 获取数据，如何在数据到来之前防止重复点击?"></a>点击按钮，使用 ajax 获取数据，如何在数据到来之前防止重复点击?</h2><p>设置一个状态锁,在触发ajax前是锁定的,之后若重复点击都不会触发ajax,直到代码执行完再解除锁定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var isDataArrive = true; //设置状态锁初始值为true，表示数据到达。</div><div class="line"></div><div class="line">btn.addEventListener(&apos;click&apos;, function(e) &#123;</div><div class="line">    e.preventDefault();</div><div class="line"></div><div class="line">    if (!isDataArrive) &#123;</div><div class="line">        return;          //如果数据没有到达表示正在请求数据，则本次点击无效。</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    var xhr = new XMLHttpRequest();</div><div class="line"></div><div class="line">    xhr.onreadystatechange = function() &#123;</div><div class="line"></div><div class="line">        if (xhr.readyState == &apos;4&apos;) &#123;</div><div class="line">            if (xhr.status === 200 || xhr.status === 304) &#123;</div><div class="line">                var result = JSON.parse(xhr.responseText);</div><div class="line">                console.log(result);</div><div class="line">                var fragment = document.createDocumentFragment();</div><div class="line"></div><div class="line">                for (var i = 0; i &lt; result.length; i++) &#123;</div><div class="line">                    var node = document.createElement(&apos;li&apos;);</div><div class="line">                    node.innerText = result[i];</div><div class="line">                    fragment.appendChild(node);</div><div class="line"></div><div class="line">                &#125;</div><div class="line">                ct.appendChild(fragment);</div><div class="line">                pageIndex += 5;</div><div class="line"></div><div class="line">            &#125; else &#123;</div><div class="line">                console.log(&apos;出错了&apos;);</div><div class="line"></div><div class="line">            &#125;</div><div class="line">            isDataArrive = true;   //若获取到数据，表示数据已经送达，将状态锁设置为true。</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;;</div><div class="line">    xhr.open(&apos;get&apos;, &apos;/loadMore?index=&apos; + pageIndex + &apos;&amp;length=5&apos;, true);</div><div class="line">    xhr.send();</div><div class="line">    isDataArrive = false;   //发送数据之后，将状态锁设置为false</div></pre></td></tr></table></figure>
+<h2 id="实现加载更多的功能，效果范例340，后端在本地使用server-mock来模拟数据"><a href="#实现加载更多的功能，效果范例340，后端在本地使用server-mock来模拟数据" class="headerlink" title="实现加载更多的功能，效果范例340，后端在本地使用server-mock来模拟数据"></a>实现加载更多的功能，效果范例340，后端在本地使用server-mock来模拟数据</h2><p><a href="https://github.com/MorganXie/Demos" target="_blank" rel="external">代码</a></p>
+<p>效果图</p>
+<p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1fhx4e917ffg20go09pgof.gif" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ajax JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/ajax/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-setTimeout and Closure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/setTimeout and Closure/">setTimeout and Closure </a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/setTimeout and Closure/" class="archive-article-date">
   	<time datetime="2017-10-08T19:44:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
 </a>
         
@@ -289,7 +1292,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/setTimeout-and-Closure/">展开全文 >></a>
+          <a class="article-more-a" href="/myBlog/2017/10/09/setTimeout and Closure/">展开全文 >></a>
         </p>
       
 
@@ -319,472 +1322,10 @@
 
 
   
-    <article id="post-关于拖延症" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/关于拖延症/">关于拖延症</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/关于拖延症/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:44:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天看了一个关于拖延症的演讲。</p>
-<h4 id="一般人的大脑"><a href="#一般人的大脑" class="headerlink" title="一般人的大脑"></a>一般人的大脑</h4><p><img src="https://pic4.zhimg.com/v2-3954cba444ff1223fb126a00991a8653_b.jpg" alt=""></p>
-<h4 id="拖延症患者的大脑"><a href="#拖延症患者的大脑" class="headerlink" title="拖延症患者的大脑"></a>拖延症患者的大脑</h4><p><img src="https://pic1.zhimg.com/v2-dcdf5ed50a3f8ebb7038459efa14a62c_b.png" alt=""></p>
-<h4 id="两个大脑都有一个理性决策的人，但是在拖延症患者的大脑里多了一只及时行乐的猴子-☉д⊙"><a href="#两个大脑都有一个理性决策的人，但是在拖延症患者的大脑里多了一只及时行乐的猴子-☉д⊙" class="headerlink" title="两个大脑都有一个理性决策的人，但是在拖延症患者的大脑里多了一只及时行乐的猴子(☉д⊙)"></a>两个大脑都有一个理性决策的人，但是在拖延症患者的大脑里多了一只及时行乐的猴子(☉д⊙)</h4><p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1fhtln5vdhcj21400o2n73.jpg" alt=""></p>
-<h4 id="当你要努力学习认真工作的时候，这只猴子并不喜欢这个计划-╮-╯-╰-╭"><a href="#当你要努力学习认真工作的时候，这只猴子并不喜欢这个计划-╮-╯-╰-╭" class="headerlink" title="当你要努力学习认真工作的时候，这只猴子并不喜欢这个计划 ╮(╯_╰)╭"></a>当你要努力学习认真工作的时候，这只猴子并不喜欢这个计划 ╮(╯_╰)╭</h4><p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1fhtlsmp8evj21400mwgts.jpg" alt=""></p>
-<h4 id="然后他就抢过了方向盘····"><a href="#然后他就抢过了方向盘····" class="headerlink" title="然后他就抢过了方向盘····"></a>然后他就抢过了方向盘····</h4><p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1fhtlxirdw7j213x0mwahh.jpg" alt=""></p>
-<h4 id="ΦωΦ"><a href="#ΦωΦ" class="headerlink" title="(ΦωΦ)"></a>(ΦωΦ)</h4><p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1fhtm6ultooj21400n3jwv.jpg" alt=""></p>
-<h3 id="你并不希望这只及时行乐的猴子掌控方向，它完全生活在当下。没有过去的记忆，也没有未来的概念，它只关注两件事情：简单和开心"><a href="#你并不希望这只及时行乐的猴子掌控方向，它完全生活在当下。没有过去的记忆，也没有未来的概念，它只关注两件事情：简单和开心" class="headerlink" title="你并不希望这只及时行乐的猴子掌控方向，它完全生活在当下。没有过去的记忆，也没有未来的概念，它只关注两件事情：简单和开心"></a><strong><em>你并不希望这只及时行乐的猴子掌控方向，它完全生活在当下。没有过去的记忆，也没有未来的概念，它只关注两件事情：简单和开心</em></strong></h3><p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1fhtmgmolz7j21400n87en.jpg" alt=""></p>
-<h4 id="当然我们大脑中还有一种叫惊慌怪兽的生物，它是那只猴子的克星，但是大部分时间都在沉睡。"><a href="#当然我们大脑中还有一种叫惊慌怪兽的生物，它是那只猴子的克星，但是大部分时间都在沉睡。" class="headerlink" title="当然我们大脑中还有一种叫惊慌怪兽的生物，它是那只猴子的克星，但是大部分时间都在沉睡。"></a>当然我们大脑中还有一种叫惊慌怪兽的生物，它是那只猴子的克星，但是大部分时间都在沉睡。</h4><p><img src="https://pic1.zhimg.com/v2-7440e47c3e060a99c9ec85ed8d3d0d94_b.jpg" alt=""></p>
-<h4 id="当临近截止日期或有可能当众出丑的时候它才会出现帮助我们赶走猴子。让理性的人重新掌控方向盘。"><a href="#当临近截止日期或有可能当众出丑的时候它才会出现帮助我们赶走猴子。让理性的人重新掌控方向盘。" class="headerlink" title="当临近截止日期或有可能当众出丑的时候它才会出现帮助我们赶走猴子。让理性的人重新掌控方向盘。"></a>当临近截止日期或有可能当众出丑的时候它才会出现帮助我们赶走猴子。让理性的人重新掌控方向盘。</h4><h2 id="——————————"><a href="#——————————" class="headerlink" title="——————————"></a>——————————</h2><h3 id="最后演讲者将拖延症分为“有时间限制的拖延症”和“无时间限制的拖延症”，对于有时间限制的拖延症当时间限制接近，惊慌怪兽会出现帮助我们赶走猴子，例如暑假最后一天学渣抄作业的效率····-3-」∠"><a href="#最后演讲者将拖延症分为“有时间限制的拖延症”和“无时间限制的拖延症”，对于有时间限制的拖延症当时间限制接近，惊慌怪兽会出现帮助我们赶走猴子，例如暑假最后一天学渣抄作业的效率····-3-」∠" class="headerlink" title="最后演讲者将拖延症分为“有时间限制的拖延症”和“无时间限制的拖延症”，对于有时间限制的拖延症当时间限制接近，惊慌怪兽会出现帮助我们赶走猴子，例如暑假最后一天学渣抄作业的效率····(:3 」∠ )"></a>最后演讲者将拖延症分为“有时间限制的拖延症”和“无时间限制的拖延症”，对于有时间限制的拖延症当时间限制接近，惊慌怪兽会出现帮助我们赶走猴子，例如暑假最后一天学渣抄作业的效率····<em>(:3 」∠ )</em></h3><p><img src="https://pic1.zhimg.com/v2-1fc0fb17cde12438250b4f9ebc2abf10_b.png" alt=""></p>
-<h3 id="可怕的是无时间限制拖延症，例如，主动掌握一项技能、健身等等，因为惊慌怪兽不会去帮助我们赶走猴子，大部分人会一直拖延，一边拖延一边后悔一边自责，最后放弃。"><a href="#可怕的是无时间限制拖延症，例如，主动掌握一项技能、健身等等，因为惊慌怪兽不会去帮助我们赶走猴子，大部分人会一直拖延，一边拖延一边后悔一边自责，最后放弃。" class="headerlink" title="可怕的是无时间限制拖延症，例如，主动掌握一项技能、健身等等，因为惊慌怪兽不会去帮助我们赶走猴子，大部分人会一直拖延，一边拖延一边后悔一边自责，最后放弃。"></a><strong><em>可怕的是无时间限制拖延症，例如，主动掌握一项技能、健身等等，因为惊慌怪兽不会去帮助我们赶走猴子，大部分人会一直拖延，一边拖延一边后悔一边自责，最后放弃。</em></strong></h3><p><strong><em>视频地址</em></strong>：<a href="http://open.163.com/movie/2016/3/Q/E/MBHQSM52F_MBI15O7QE.html" target="_blank" rel="external">你有拖延症吗</a></p>
-<h2 id="克服拖延症"><a href="#克服拖延症" class="headerlink" title="克服拖延症"></a>克服拖延症</h2><ol>
-<li>明确的目标，指定可执行的目标。</li>
-<li>勿好高骛远 ，培养小习惯。</li>
-<li>激励自己，多给些正反馈。（再多跑一圈，帅过吴彦祖···）</li>
-</ol>
-<h2 id="时间管理-和-精力管理"><a href="#时间管理-和-精力管理" class="headerlink" title="时间管理 和 精力管理"></a>时间管理 和 精力管理</h2><h3 id="时间管理"><a href="#时间管理" class="headerlink" title="时间管理"></a>时间管理</h3><p><strong><em>主动设置期限</em></strong>（我个人认为很难有有效的时间管理。）</p>
-<h3 id="精力管理"><a href="#精力管理" class="headerlink" title="精力管理"></a>精力管理</h3><ol>
-<li><p>精力是是一种主观动力 ，只有相信自己可以才能成功。（这是句废话）</p>
-</li>
-<li><p>有时精力充沛有时精力不足，把重要的、喜欢的事情放在精力充沛的时候，不喜欢的留在精力不足的时候。</p>
-</li>
-<li><p>及时补充精力。（尽量不熬夜）</p>
-</li>
-<li><p>寻找精力的源泉。（寻找动力）</p>
-</li>
-<li><p>选择精力的投放目标。</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">habits</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/关于拖延症/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CSS-Float-BFC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/CSS-Float-BFC/">CSS Float (BFC)</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/CSS-Float-BFC/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:36:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="浮动元素有什么特征？对父容器、其他浮动元素、普通元素、文字分别有什么影响"><a href="#浮动元素有什么特征？对父容器、其他浮动元素、普通元素、文字分别有什么影响" class="headerlink" title="浮动元素有什么特征？对父容器、其他浮动元素、普通元素、文字分别有什么影响?"></a>浮动元素有什么特征？对父容器、其他浮动元素、普通元素、文字分别有什么影响?</h3><p>浮动元素脱离了普通文档流，文档的普通流中的元素表现的就像浮动元素不存在一样。<br>浮动的框可以向左向右移动，直到它的外边缘碰到包含框或者另一个浮动的边缘为止。</p>
-<ul>
-<li><p>对父容器的影响：如果父容器的子元素都是浮动元素，那么父容器失去高度。</p>
-</li>
-<li><p>对其他浮动元素的影响：如果水平空间不够会将浮动元素排到下一行，如果上一行的元素大小不一，被排到下一行的元素可能会被卡住。</p>
-</li>
-<li><p>对普通元素的影响：因为普通元素脱离了文档流，普通文档流中的元素表现得就像浮动元素不存在一样。</p>
-</li>
-<li><p>对文字的影响：文字会感应到浮动元素的存在并产生文字浮动效果。 </p>
-</li>
-</ul>
-<h3 id="清除浮动指什么-如何清除浮动-两种以上方法"><a href="#清除浮动指什么-如何清除浮动-两种以上方法" class="headerlink" title="清除浮动指什么? 如何清除浮动? 两种以上方法"></a>清除浮动指什么? 如何清除浮动? 两种以上方法</h3><p>清楚浮动指的是元素浮动后由于浮动元素的特性会使其他元素的布局方式受到影响，此时我们清除浮动就是使用一些方法消除浮动元素对其他元素排版布局的影响。</p>
-<p><strong>方法</strong></p>
-<ol>
-<li><p>在父容器最后添加一个空div，并清理这个div。clear：both；</p>
-</li>
-<li><p>使父容器生成一个BFC，因为BFC可以包含浮动。<br>规定满足下列CSS声明之一的元素便会生成BFC。<br>根元素</p>
-<ul>
-<li>float的值不为none</li>
-<li>overflow的值不为visible</li>
-<li>display的值为inline-block、table-cell、table-caption</li>
-<li><p>position的值为absolute或fixed</p>
-<p>/<em>方法1</em>/<br>  .clearfix{</p>
-<pre><code>*zoom:1;
-</code></pre><p>  }<br>  .clearfix:after{ </p>
-<pre><code>content:&quot;&quot;;
-display:block;
-clear:left;
-</code></pre><p>  }</p>
-<p>  /<em>方法2</em>/<br>  .clearfix{<br>  *zoom:1;<br>  }<br>  .clearfix:after{<br>  content:””;</p>
-<pre><code>display:table;
-clear:both;
-</code></pre><p>  }﻿​</p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="有几种定位方式，分别是如何实现定位的，参考点是什么，使用场景是什么？"><a href="#有几种定位方式，分别是如何实现定位的，参考点是什么，使用场景是什么？" class="headerlink" title="有几种定位方式，分别是如何实现定位的，参考点是什么，使用场景是什么？"></a>有几种定位方式，分别是如何实现定位的，参考点是什么，使用场景是什么？</h3><table>
-<thead>
-<tr>
-<th>定位方式</th>
-<th>实现方法</th>
-<th>参考点</th>
-<th>使用场景</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>static</td>
-<td>默认值，元素在普通文档流中</td>
-<td>无</td>
-<td></td>
-</tr>
-<tr>
-<td>relative</td>
-<td>相对定位，元素框偏移某个距离。保留它原来所在位置</td>
-<td>元素本身</td>
-<td>元素偏移</td>
-</tr>
-<tr>
-<td>absolute</td>
-<td>绝对定位,元素框从文档流中分离出来，元素定位后生成一个块级框，不论原来它在文档流中生成何种类型的框</td>
-<td>距离最近的非static元素，没有则为body</td>
-<td>元素垂直居中</td>
-</tr>
-<tr>
-<td>fixed</td>
-<td>固定定位，生产绝对定位元素，但不随着滚动条的移动而改变位置</td>
-<td>浏览器窗口</td>
-<td>登录框覆盖层</td>
-</tr>
-</tbody>
-</table>
-<h3 id="z-index-有什么作用-如何使用"><a href="#z-index-有什么作用-如何使用" class="headerlink" title="z-index 有什么作用? 如何使用?"></a>z-index 有什么作用? 如何使用?</h3><p>z-index 属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。如果为正数，则离用户更近，为负数则表示离用户更远。z-index 仅能在定位元素上奏效。</p>
-<h3 id="position-relative和负margin都可以使元素位置发生偏移-二者有什么区别"><a href="#position-relative和负margin都可以使元素位置发生偏移-二者有什么区别" class="headerlink" title="position:relative和负margin都可以使元素位置发生偏移?二者有什么区别"></a>position:relative和负margin都可以使元素位置发生偏移?二者有什么区别</h3><p>二者都可以让元素发生偏移，相对定位让元素显示的位置发生，但会保留原来元素所在的位置，负margin会改变元素在文档流中的位置。</p>
-<h3 id="BFC-是什么？如何生成-BFC？BFC-有什么作用？举例说明"><a href="#BFC-是什么？如何生成-BFC？BFC-有什么作用？举例说明" class="headerlink" title="BFC 是什么？如何生成 BFC？BFC 有什么作用？举例说明"></a>BFC 是什么？如何生成 BFC？BFC 有什么作用？举例说明</h3><p>BFC的全称是 Block Format Content，块级格式化上下文。 规定满足下列CSS声明之一的元素便会生成BFC。</p>
-<ul>
-<li>根元素</li>
-<li>float的值不为none</li>
-<li>overflow的值不为visible</li>
-<li>display的值为inline-block、table-cell、table-caption</li>
-<li>position的值为absolute或fixed</li>
-</ul>
-<p><strong>作用</strong></p>
-<ul>
-<li><p>BFC会阻止垂直外边距（<code>margin-top</code>,<code>margin-bottom</code>）折叠<br>按照BFC定义，只有同属于一个BFC时，两个元素才有可能发生垂直margin的重叠，这个包括相邻元素，嵌套元素，只要他们之间没有阻挡（例如边框,非空白内容，padding等）就会发生margin重叠。<br>因此只要解决margin重叠问题只要让两个元素不在同一个BFC就行了，但是对于两个相邻元素来说，意义不大，没有必要给它们加个外壳，但是对于嵌套元素来说很有必要，只要报父元素设置为BFC就可以了，这样子元素的margin就不会和父元素的margin发生重叠了。</p>
-</li>
-<li><p>BFC不会重叠浮动元素。</p>
-</li>
-<li>BFC可以包含浮动元素。</li>
-</ul>
-<h3 id="在什么场景下会出现外边距合并？如何合并？如何不让相邻元素外边距合并？给个父子外边距合并的范例"><a href="#在什么场景下会出现外边距合并？如何合并？如何不让相邻元素外边距合并？给个父子外边距合并的范例" class="headerlink" title="在什么场景下会出现外边距合并？如何合并？如何不让相邻元素外边距合并？给个父子外边距合并的范例"></a>在什么场景下会出现外边距合并？如何合并？如何不让相邻元素外边距合并？给个父子外边距合并的范例</h3><p>外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。<br>合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。</p>
-<h5 id="相邻元素合并外边框"><a href="#相邻元素合并外边框" class="headerlink" title="相邻元素合并外边框"></a>相邻元素合并外边框</h5><p><img src="http://upload-images.jianshu.io/upload_images/4193336-b0eda9250d6ea676.gif?imageMogr2/auto-orient/strip" alt=""></p>
-<h5 id="父子元素合并外框"><a href="#父子元素合并外框" class="headerlink" title="父子元素合并外框"></a>父子元素合并外框</h5><p><img src="http://upload-images.jianshu.io/upload_images/4193336-8b6cfb62c0e2ca6a.gif?imageMogr2/auto-orient/strip" alt=""></p>
-<h5 id="空元素外边距合并"><a href="#空元素外边距合并" class="headerlink" title="空元素外边距合并"></a>空元素外边距合并</h5><p><img src="http://upload-images.jianshu.io/upload_images/4193336-820911ef813c1a7f.gif?imageMogr2/auto-orient/strip" alt=""></p>
-<h5 id="多个空元素外边距合并"><a href="#多个空元素外边距合并" class="headerlink" title="多个空元素外边距合并"></a>多个空元素外边距合并</h5><p><img src="http://upload-images.jianshu.io/upload_images/4193336-db2837775855778f.gif?imageMogr2/auto-orient/strip" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/CSS-Float-BFC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CSS-Common-Styles2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/CSS-Common-Styles2/">CSS Common Styles2</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/CSS-Common-Styles2/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:35:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="text-align-center的作用是什么，作用在什么元素上？能让什么元素水平居中？"><a href="#text-align-center的作用是什么，作用在什么元素上？能让什么元素水平居中？" class="headerlink" title="text-align: center的作用是什么，作用在什么元素上？能让什么元素水平居中？"></a>text-align: center的作用是什么，作用在什么元素上？能让什么元素水平居中？</h3><p>  作用在block元素上，能让块级元素内的inline元素和inline-block元素水平居中。</p>
-<h3 id="IE-盒模型和W3C盒模型有什么区别"><a href="#IE-盒模型和W3C盒模型有什么区别" class="headerlink" title="IE 盒模型和W3C盒模型有什么区别?"></a>IE 盒模型和W3C盒模型有什么区别?</h3><p><img src="http://upload-images.jianshu.io/upload_images/6098309-5a7268f5415d5daa.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>IE 盒模型的 width= border + padding + 内容宽度<br>W3C盒模型的 width = 内容宽度</p>
-<h3 id="box-sizing-border-box-的作用是什么？"><a href="#box-sizing-border-box-的作用是什么？" class="headerlink" title="*{ box-sizing: border-box;}的作用是什么？"></a>*{ box-sizing: border-box;}的作用是什么？</h3><p>使用IE盒模型<br>元素的内边距和边框不再会增加它的宽度</p>
-<h3 id="line-height-2和line-height-200-有什么区别"><a href="#line-height-2和line-height-200-有什么区别" class="headerlink" title="line-height: 2和line-height: 200%有什么区别?"></a>line-height: 2和line-height: 200%有什么区别?</h3><p><code>line-height:2</code> :文本行高为当前元素字体大小的2倍</p>
-<p><code>line-height: 200%</code> : 文本行高为当前文本所在块级元素的父元素的font-size的2倍（若是行内元素的文本，则会是行内元素所在块级元素的父元素的font-size的2倍）</p>
-<p>数值：继承的时候，浏览器会先将line-height这个属性继承给子元素，再由子元素计算。<br>百分数：继承的时候，浏览器会先将行高对应的数值计算出来以后再继承。</p>
-<p>###inline-block有什么特性？如何去除缝隙？高度不一样的inline-block元素如何顶端对齐?</p>
-<p>让元素拥有行内元素不独占一行的特性，又可以对该元素设置宽高，内外边距。</p>
-<p>缝隙是由于空格导致，对父级容器设置字体大小（<code>font-size:0</code>）为0可以去除缝隙，</p>
-<p>高度不一样的inline-block元素默认基线对齐，设置vertical-align：top 。</p>
-<h3 id="CSS-sprite-是什么"><a href="#CSS-sprite-是什么" class="headerlink" title="CSS sprite 是什么?"></a>CSS sprite 是什么?</h3><p>CSS Sprites是一种网页图片应用处理方式，就是把网页中一些背景图片整合到一张图片文件中,再利用CSS进行背景定位。 优势:可以减少用户浏览网页时对服务器的请求数，减少服务器负载，达到优化网站的目的。</p>
-<h3 id="让一个元素”看不见”有几种方式？有什么区别"><a href="#让一个元素”看不见”有几种方式？有什么区别" class="headerlink" title="让一个元素”看不见”有几种方式？有什么区别?"></a>让一个元素”看不见”有几种方式？有什么区别?</h3><pre><code>{ display: none; /* 不占据空间，无法点击 */ }
-
-{ display: none; /* 不占据空间，无法点击 */ }
-
-{ visibility: hidden; /* 占据空间，无法点击 */ }
-
-{ position: absolute; clip:rect(1px 1px 1px 1px); /* 不占据空间，无法点击 */ }
-
-{ position: absolute; top: -999em; /* 不占据空间，无法点击 */ }
-
-{ position: relative; top: -999em; /* 占据空间，无法点击 */ }
-
-{ position: absolute; visibility: hidden; /* 不占据空间，无法点击*/}{ height: 0; overflow: hidden; /* 不占据空间，无法点击 */ }
-
-{ opacity: 0; filter:Alpha(opacity=0); /* 占据空间，可以点击 */ }
-
-{ position: absolute; opacity: 0; filter:Alpha(opacity=0); /* 不占据空间，可以点击 */ }
-</code></pre><p><a href="http://www.zhangxinxu.com/wordpress/2012/02/css-overflow-hidden-visibility-hidden-disabled-use/" target="_blank" rel="external">张鑫旭: 您可能不知道的CSS元素隐藏“失效”以其妙用</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/CSS-Common-Styles2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-从URL输入到网页展示的过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/从URL输入到网页展示的过程/">从URL输入到网页展示的过程</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/从URL输入到网页展示的过程/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:09:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="从URL输入到网页展示的过程"><a href="#从URL输入到网页展示的过程" class="headerlink" title="从URL输入到网页展示的过程"></a>从URL输入到网页展示的过程</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>扯一扯从你输入网址到网页呈现发生了什么。</p>
-</blockquote>
-<h2 id="一-输入URL"><a href="#一-输入URL" class="headerlink" title="一. 输入URL"></a>一. 输入URL</h2><p>URL(Uniform Resource Locator)，统一资源定位符,它是对可以从互联网上得到的资源的位置和访问方法的一种简洁的表示，是互联网上标准资源的地址。互联网上的每个文件都有一个唯一的URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它。它也包含协议部分，是浏览器和万维网之间沟通的方式，常见的协议有http、https、ftp、file····</p>
-<h2 id="二-域名的解析"><a href="#二-域名的解析" class="headerlink" title="二 .域名的解析"></a>二 .域名的解析</h2><p>当你输入<code>http://baidu.com</code>时，实际上浏览器并不知道<code>baidu.com</code>是什么东西，它需要查找<code>baidu.com</code>的所在服务器的IP地址才能找到目标。</p>
-<h3 id="1-什么是域名"><a href="#1-什么是域名" class="headerlink" title="1.什么是域名"></a>1.什么是域名</h3><p>例如在<code>http://baidu.com</code>中，<code>baidu.com</code>就是该网址的域名。</p>
-<h3 id="2-为什么不直接使用IP地址而发明域名"><a href="#2-为什么不直接使用IP地址而发明域名" class="headerlink" title="2.为什么不直接使用IP地址而发明域名"></a>2.为什么不直接使用IP地址而发明域名</h3><p>因为域名比一串数字的IP地址更容易记住，所以使用域名。</p>
-<h3 id="3-IP地址是什么"><a href="#3-IP地址是什么" class="headerlink" title="3.IP地址是什么"></a>3.IP地址是什么</h3><p>IP地址是指互联网协议地址（Internet Protocol Address）。IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。</p>
-<ul>
-<li>每个网络上的设备都有IP地址例如<code>192.168.0.1</code>。</li>
-<li>局域网的IP地址和公网的IP地址是有差异的。</li>
-<li><code>127.0.0.1</code>代表本机的IP地址。</li>
-</ul>
-<h3 id="4-域名解析的流程"><a href="#4-域名解析的流程" class="headerlink" title="4.域名解析的流程"></a>4.域名解析的流程</h3><ol>
-<li>浏览器会自动缓存DNS记录一段时间，浏览器会检查缓存中有没有这个域名对应的解析过的IP地址，如果有解析过程就此结束。</li>
-<li>系统缓存，从系统Hosts文件中查找是否有该域名和对应的IP。</li>
-<li>路由器缓存，一般路由器也会缓存域名信息。</li>
-<li>IPS DNS缓存- 比如到电信的DNS 上查找缓存。</li>
-<li>如果以上方法都没有找到，则向根域名服务器查找对应的IP地址，根域名服务器把请求转发到下一级，一直到找到IP。</li>
-</ol>
-<blockquote>
-<p>问：当电脑上不了网了，为什么修改DNS为<code>8.8.8.8</code>或者<code>114.114.114.114</code>?</p>
-<p>答：<code>8.8.8.8</code>是谷歌提供的DNS服务器，跳过上述步骤1-5，直接在谷歌提供的DNS服务器里查找该域名。同理<code>114.114.114.114</code>是电信提供的DNS服务器。</p>
-</blockquote>
-<p>经过以上IP寻址的过程，目标URL查找到对应的IP地址之后，通过IP地址查找到对应的服务器，浏览器将用户发起的http请求发送给服务器。下一步就到了服务器处理阶段的工作。</p>
-<h2 id="三-服务器处理"><a href="#三-服务器处理" class="headerlink" title="三.服务器处理"></a>三.服务器处理</h2><p>每台服务器上都会安装处理请求的应用<strong>web server</strong>，常见的web server产品有Apache、Nginx、IIS、Lighttpd····</p>
-<p><strong>web server</strong> 担任管控的角色，对于不同用户发送的请求，会结合配置文件，把不同请求委托给服务器上处理对应请求的程序进行处理（例如CGI脚本，JSP脚本，servlets，ASP脚本，Node.js，或者一些其它的服务器端技术等），然后返回后台程序处理产生的结果作为响应。</p>
-<h2 id="四-网站处理阶段"><a href="#四-网站处理阶段" class="headerlink" title="四.网站处理阶段"></a>四.网站处理阶段</h2><h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p><strong>MVC</strong>是一种使用MVC（Model-View-Control 模型-视图-控制器）设计创建web程序的模式。</p>
-<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1495300238395&amp;di=d21e49546214683bf42c4f0613646f1b&amp;imgtype=0&amp;src=http%3A%2F%2Fimages.cnitblog.com%2Fblog%2F191097%2F201307%2F17122850-e60fd55ef7ed48679f6785aa3ff80082.png" alt="MVC"></p>
-<ul>
-<li><strong>Model</strong>（模型）模型是将实际开发中的业务规则和所涉及的数据格式模型化，应用于模型的代码只需写一次就可以被多个视图重用。在MVC的三个部件中，模型拥有最多的处理任务。一个模型能为多个视图提供数据。* </li>
-<li><strong>View</strong>（视图）是应用程序中用于处理程序数据逻辑部分。</li>
-<li><p><strong>Control</strong>（控制器）控制器接受用户的输入并调用模型和视图去完成用户的需求。Controller处于管理角色，从视图接收请求并决定调用哪个模型构件去处理请求，然后再确定用哪个视图来显示模型处理返回的数据。</p>
-<p>总结而言，首先控制器接收用户的请求，并决定应该调用哪个模型来进行处理，然后模型用业务逻辑来处理用户的请求并返回数据，最后控制器用相应的视图格式化模型返回html字符串给浏览器，浏览器呈现网页给用户。因此，下一步就来到浏览器处理阶段。</p>
-</li>
-</ul>
-<h3 id="浏览器处理"><a href="#浏览器处理" class="headerlink" title="浏览器处理"></a>浏览器处理</h3><p>HTML字符串被浏览器接受后被一句句读取解析，解析到link 标签后重新发送请求获取css，解析到，script标签后发送请求获取 js，并执行代码，解析到img 标签后发送请求获取图片资源。</p>
-<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>浏览器对html页面的加载是自顶向下的，并在加载的过程中进行解析与渲染。遇到link，image，script标签时浏览器会再次向服务器发送请求获取相应的css文件，图片文件，js文件，并执行js代码。</p>
-<h3 id="解析与渲染"><a href="#解析与渲染" class="headerlink" title="解析与渲染"></a>解析与渲染</h3><p>将html文档解析生成解析树（DOM树），这是由DOM元素以及属性节点组成，树根是document对象。</p>
-<p>构建渲染树是DOM树可视化的表示，目的是为了以正确的顺序绘制文档内容。不可见的DOM元素不会被插入渲染树中（<code>display:none;</code>）,还有像一些节点的位置为绝对或浮动定位，这些节点会在文本流之外，因此会在两棵树上的不同位置，渲染树标识出真实的位置，并用一个占位结构标识出他们原来的位置。</p>
-<h2 id="绘制网站"><a href="#绘制网站" class="headerlink" title="绘制网站"></a>绘制网站</h2><p>浏览器根据渲染树绘制网站并最终展现在浏览器上。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/从URL输入到网页展示的过程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/myBlog/page/2/">2</a><a class="page-number" href="/myBlog/page/3/">3</a><a class="page-number" href="/myBlog/page/4/">4</a><a class="extend next" rel="next" href="/myBlog/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -879,6 +1420,26 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">habits</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ajax JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">git github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS CSS3 flex</a>
               </li>
             
             <div class="clearfix"></div>
