@@ -143,6 +143,155 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-迭代与循环" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2018/01/26/迭代与循环/">迭代与循环</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2018/01/26/迭代与循环/" class="archive-article-date">
+  	<time datetime="2018-01-26T14:50:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原始的循环"><a href="#原始的循环" class="headerlink" title="原始的循环"></a>原始的循环</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = [&quot;1&quot;, &quot;2&quot;,&quot;3&quot;];</div><div class="line">for(var i = 0 ; i &lt;a.length; i++)&#123;</div><div class="line">	console.log(a[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h2><blockquote>
+<p>ES5中数组的内置遍历方法</p>
+</blockquote>
+<h4 id="forEach-方法对数组的每个元素执行一次提供的函数。"><a href="#forEach-方法对数组的每个元素执行一次提供的函数。" class="headerlink" title="forEach() 方法对数组的每个元素执行一次提供的函数。"></a>forEach() 方法对数组的每个元素执行一次提供的函数。</h4>
+        
+          <a class="article-more-a" href="/myBlog/2018/01/26/迭代与循环/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2018/01/26/迭代与循环/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Music-app" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/11/28/Music-app/">Music app</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/11/28/Music-app/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:18:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="仿网易云APP"><a href="#仿网易云APP" class="headerlink" title="仿网易云APP"></a>仿网易云APP</h1><h3 id="总结一路遇到的问题。"><a href="#总结一路遇到的问题。" class="headerlink" title="总结一路遇到的问题。"></a>总结一路遇到的问题。</h3><h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><ul>
+<li><code>display :inline-block</code> 有空隙，添加 <code>vertical-align:top</code>解决</li>
+<li>做出比1px更细的border</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//解决方案：</div><div class="line">.page &gt; .topBar &gt; a:after&#123;</div><div class="line">    content: &apos;&apos;;</div><div class="line">    position: absolute;</div><div class="line">    top:0;</div><div class="line">    left:0;</div><div class="line">    width: 200%;</div><div class="line">    height: 200%;</div><div class="line">    border-radius: 30px;</div><div class="line">    border: 1px solid white;</div><div class="line">    transform-origin: 0 0 ; //以 0 0 坐标变换</div><div class="line">    transform: scale(0.5);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/myBlog/2017/11/28/Music-app/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/11/28/Music-app/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HTML5-and-CSS3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -782,173 +931,6 @@
 
 
   
-    <article id="post-jQuery DOM and Ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/jQuery DOM and Ajax/">jQuery DOM and Ajax</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/jQuery DOM and Ajax/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:47:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="jQuery-中，-document-ready-是什么意思？"><a href="#jQuery-中，-document-ready-是什么意思？" class="headerlink" title="jQuery 中， $(document).ready()是什么意思？"></a>jQuery 中， $(document).ready()是什么意思？</h2><ul>
-<li><p><code>$(document).ready()</code>的作用是当文档中的DOM节点加载完成后，在加载外部图片和资源前，执行ready()里面的操作。</p>
-</li>
-<li><p><code>window.load</code>是整个页面加载完成（包括图片，css，脚本等）之后再执行onload()中的操作。并且 <code>window.onload</code>不能同时编写多个，如果有多个<code>window.onload</code>方法，只会执行一个 （后者会覆盖前者）。</p>
-</li>
-</ul>
-<p><strong>注意:</strong><br><code>$(document).ready(function(){})</code>可以简写成<code>$(function(){})</code>。</p>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery DOM and Ajax/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery DOM and Ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-jQuery" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/jQuery/">jQuery</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/jQuery/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:46:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##jQuery 能做什么？</p>
-<p>jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。<br>jQuery是一个JavaScript函数库，可以方便地：</p>
-<ul>
-<li>选择dom元素</li>
-<li>dom操作</li>
-<li>事件处理</li>
-<li>特效处理</li>
-<li>ajax</li>
-<li>链式操作</li>
-</ul>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/myBlog/page/2/">2</a><a class="page-number" href="/myBlog/page/3/">3</a><a class="page-number" href="/myBlog/page/4/">4</a><a class="extend next" rel="next" href="/myBlog/page/2/">Next &raquo;</a>
@@ -963,7 +945,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 MorganXie
+    		&copy; 2018 MorganXie
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1059,15 +1041,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">git github</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS CSS3 flex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1075,7 +1057,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS CSS3 flex</a>
+                <a href="javascript:void(0)" class="js-tag color1">git github</a>
               </li>
              
               <li class="article-tag-list-item">

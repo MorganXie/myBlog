@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: npm webpack | 前方高能</title>
+  <title>Music app | 前方高能</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="前方高能">
-<meta property="og:url" content="http://yoursite.com/tags/npm-webpack/index.html">
+  <meta name="description" content="仿网易云APP总结一路遇到的问题。css display :inline-block 有空隙，添加 vertical-align:top解决 做出比1px更细的border  12345678910111213//解决方案：.page &amp;gt; .topBar &amp;gt; a:after&amp;#123;    content: &amp;apos;&amp;apos;;    position: absolute;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Music app">
+<meta property="og:url" content="http://yoursite.com/2017/11/28/Music-app/index.html">
 <meta property="og:site_name" content="前方高能">
+<meta property="og:description" content="仿网易云APP总结一路遇到的问题。css display :inline-block 有空隙，添加 vertical-align:top解决 做出比1px更细的border  12345678910111213//解决方案：.page &amp;gt; .topBar &amp;gt; a:after&amp;#123;    content: &amp;apos;&amp;apos;;    position: absolute;">
+<meta property="og:updated_time" content="2017-11-28T07:20:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前方高能">
+<meta name="twitter:title" content="Music app">
+<meta name="twitter:description" content="仿网易云APP总结一路遇到的问题。css display :inline-block 有空隙，添加 vertical-align:top解决 做出比1px更细的border  12345678910111213//解决方案：.page &amp;gt; .topBar &amp;gt; a:after&amp;#123;    content: &amp;apos;&amp;apos;;    position: absolute;">
   
     <link rel="alternative" href="/atom.xml" title="前方高能" type="application/atom+xml">
   
@@ -141,60 +145,211 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Music-app" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/10/09/npm-and-webpack/" class="archive-article-date">
-  	<time datetime="2017-10-08T20:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/10/09/npm-and-webpack/">npm and webpack</a>
+    <h1 class="article-title" itemprop="name">
+      Music app
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">npm webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/myBlog/2017/11/28/Music-app/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:18:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="仿网易云APP"><a href="#仿网易云APP" class="headerlink" title="仿网易云APP"></a>仿网易云APP</h1><h3 id="总结一路遇到的问题。"><a href="#总结一路遇到的问题。" class="headerlink" title="总结一路遇到的问题。"></a>总结一路遇到的问题。</h3><h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><ul>
+<li><code>display :inline-block</code> 有空隙，添加 <code>vertical-align:top</code>解决</li>
+<li>做出比1px更细的border</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//解决方案：</div><div class="line">.page &gt; .topBar &gt; a:after&#123;</div><div class="line">    content: &apos;&apos;;</div><div class="line">    position: absolute;</div><div class="line">    top:0;</div><div class="line">    left:0;</div><div class="line">    width: 200%;</div><div class="line">    height: 200%;</div><div class="line">    border-radius: 30px;</div><div class="line">    border: 1px solid white;</div><div class="line">    transform-origin: 0 0 ; //以 0 0 坐标变换</div><div class="line">    transform: scale(0.5);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li><code>line-height:1</code>默认和字一样高</li>
+<li>多行文字溢出省略</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">overflow : hidden;</div><div class="line">    text-overflow: ellipsis;</div><div class="line">    display: -webkit-box;</div><div class="line">    -webkit-line-clamp: 2; //行数</div><div class="line">    -webkit-box-orient: vertical;</div></pre></td></tr></table></figure>
+<ul>
+<li>svg 变色用 fill属性</li>
+<li>阻止margin 合并</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">.noCollapse::before &#123;</div><div class="line">    content: &apos;&apos;;</div><div class="line">    display: table;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.noCollapse::after &#123;</div><div class="line">    content: &apos;&apos;;</div><div class="line">    display: table;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>背景模糊/变暗</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">filter: blur(20px) brightness(0.5);</div></pre></td></tr></table></figure>
+<ul>
+<li>动画</li>
+</ul>
+<p>当自身的css带transform的时候, 动画的transform也要加上自带的transform</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@keyframes spin &#123;</div><div class="line">    0%&#123;</div><div class="line">        transform: translate(-50%,-50%) rotateZ(0deg);</div><div class="line">    &#125;</div><div class="line">    100%&#123;</div><div class="line">        transform: translate(-50%,-50%) rotateZ(360deg);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>绝对定位居中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">position:relative;</div><div class="line">top:50%;</div><div class="line">left:50;</div><div class="line">transform:translate(-50%,-50%)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>获取伪元素的值</p>
+<p>  获取伪元素的属性值可以使用window.getComputedStyle()方法，获取伪元素的CSS样式声明对象。然后利用getPropertyValue方法或直接使用键值访问都可以获取对应的属性值。</p>
+</li>
+</ul>
+<p>语法：<code>window.getComputedStyle(element[, pseudoElement])</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">// CSS代码</div><div class="line">#myId:before &#123;</div><div class="line">    content: &quot;hello world!&quot;;</div><div class="line">    display: block;</div><div class="line">    width: 100px;</div><div class="line">    height: 100px;</div><div class="line">    background: red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// HTML代码</div><div class="line">&lt;div id=&quot;myId&quot;&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">// JS代码</div><div class="line">var myIdElement = document.getElementById(&quot;myId&quot;);</div><div class="line">var beforeStyle = window.getComputedStyle(myIdElement, &quot;:before&quot;);</div><div class="line">console.log(beforeStyle); // [CSSStyleDeclaration Object]</div><div class="line">console.log(beforeStyle.width); // 100px</div><div class="line">console.log(beforeStyle.getPropertyValue(&quot;width&quot;)); // 100px</div><div class="line">console.log(beforeStyle.content); // &quot;hello world!&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>background-size 中cover 和contain的区别</li>
+</ul>
+<pre><code>cover：图片宽高比不变、铺满整个容器的宽高，而图片多出的部分则会被截掉；
 
-          
+　　contain:图片自身的宽高比不变，缩放至图片自身能完全显示出来，所以容器会有留白区域；
+</code></pre>
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>爱给不给。<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://ww1.sinaimg.cn/large/d6c04639gy1fkbfhwgwlfj20by0bygmg.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/28/Music-app/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/myBlog/2018/01/26/迭代与循环/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          迭代与循环
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/myBlog/2017/10/09/HTML5-and-CSS3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTML5 and CSS3</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -217,9 +372,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
