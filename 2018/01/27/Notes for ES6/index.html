@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>前方高能</title>
+  <title>Notes for ES6 | 前方高能</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="前方高能">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="let &amp;amp; const为啥需要let和const？ 因为JavaScript没有块级作用域，只有函数作用域。  1234567891011121314151617181920var s = 1;var another = function ()&amp;#123;	var s = 2 ;&amp;#125;another();console.log(s) //1 //因为有函数作用域，函数内部的赋值不会影">
+<meta name="keywords" content="JavaScript ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes for ES6">
+<meta property="og:url" content="http://yoursite.com/2018/01/27/Notes for ES6/index.html">
 <meta property="og:site_name" content="前方高能">
+<meta property="og:description" content="let &amp;amp; const为啥需要let和const？ 因为JavaScript没有块级作用域，只有函数作用域。  1234567891011121314151617181920var s = 1;var another = function ()&amp;#123;	var s = 2 ;&amp;#125;another();console.log(s) //1 //因为有函数作用域，函数内部的赋值不会影">
+<meta property="og:updated_time" content="2018-01-27T14:31:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前方高能">
+<meta name="twitter:title" content="Notes for ES6">
+<meta name="twitter:description" content="let &amp;amp; const为啥需要let和const？ 因为JavaScript没有块级作用域，只有函数作用域。  1234567891011121314151617181920var s = 1;var another = function ()&amp;#123;	var s = 2 ;&amp;#125;another();console.log(s) //1 //因为有函数作用域，函数内部的赋值不会影">
   
     <link rel="alternative" href="/atom.xml" title="前方高能" type="application/atom+xml">
   
@@ -147,114 +152,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Lazy Load" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Notes for ES6" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/Lazy Load/">Lazy Load</a>
+    <h1 class="article-title" itemprop="name">
+      Notes for ES6
     </h1>
   
 
         
-        <a href="/myBlog/2017/10/09/Lazy Load/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:47:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+        <a href="/myBlog/2018/01/27/Notes for ES6/" class="archive-article-date">
+  	<time datetime="2018-01-27T14:27:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数-isVisible实现"><a href="#如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数-isVisible实现" class="headerlink" title="如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数 isVisible实现"></a>如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数 isVisible实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function isVisible($node)&#123;</div><div class="line">       var scrollTop = $(window).scrollTop();</div><div class="line">       var windowHeight = $(window).height();</div><div class="line">       var offsetTop = $node.offset().top;</div><div class="line">       if (offsetTop &lt; scrollTop + windowHeight &amp;&amp; offsetTop &gt; scrollTop) &#123;</div><div class="line">           return true;</div><div class="line">       &#125;</div><div class="line">       return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/Lazy Load/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/Lazy Load/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-jQuery DOM and Ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/jQuery DOM and Ajax/">jQuery DOM and Ajax</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/jQuery DOM and Ajax/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:47:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="jQuery-中，-document-ready-是什么意思？"><a href="#jQuery-中，-document-ready-是什么意思？" class="headerlink" title="jQuery 中， $(document).ready()是什么意思？"></a>jQuery 中， $(document).ready()是什么意思？</h2><ul>
-<li><p><code>$(document).ready()</code>的作用是当文档中的DOM节点加载完成后，在加载外部图片和资源前，执行ready()里面的操作。</p>
-</li>
-<li><p><code>window.load</code>是整个页面加载完成（包括图片，css，脚本等）之后再执行onload()中的操作。并且 <code>window.onload</code>不能同时编写多个，如果有多个<code>window.onload</code>方法，只会执行一个 （后者会覆盖前者）。</p>
-</li>
+        <h2 id="let-amp-const"><a href="#let-amp-const" class="headerlink" title="let &amp; const"></a>let &amp; const</h2><h3 id="为啥需要let和const？"><a href="#为啥需要let和const？" class="headerlink" title="为啥需要let和const？"></a>为啥需要let和const？</h3><blockquote>
+<p>因为JavaScript没有块级作用域，只有函数作用域。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var s = 1;</div><div class="line">var another = function ()&#123;</div><div class="line">	var s = 2 ;</div><div class="line">&#125;</div><div class="line">another();</div><div class="line">console.log(s) //1 </div><div class="line"></div><div class="line">//因为有函数作用域，函数内部的赋值不会影响外部的变量。</div><div class="line"></div><div class="line">--------------------------------------------</div><div class="line"></div><div class="line"></div><div class="line">var s =1 ;</div><div class="line">if(true)&#123;</div><div class="line">	var s =2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(s); //2</div><div class="line"></div><div class="line">//if语句没有块级作用域，所以会改变外面s的值</div></pre></td></tr></table></figure>
+<p><em>这很蛋疼!</em></p>
+<a id="more"></a>
+<p><strong>let 和 const就是来解决作用域问题的!</strong></p>
+<p><strong>注意:</strong> 使用let 或者 const 会默认使用严格模式 “use strict“</p>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><blockquote>
+<p>let 和var类似，但是let声明的变量只在它所处的代码块有效</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function f1() &#123;</div><div class="line">  let n = 5;</div><div class="line">  if (true) &#123;</div><div class="line">    let n = 10;</div><div class="line">  &#125;</div><div class="line">  console.log(n); </div><div class="line">&#125;</div><div class="line">f1() // 5</div><div class="line"></div><div class="line">//使用let就有了块级作用域····</div></pre></td></tr></table></figure>
+<p>看一个经典笔试题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [];</div><div class="line"></div><div class="line">for(var i = 0 ; i&lt; 10 ; i ++)&#123;</div><div class="line">	a[i] = function ()&#123;</div><div class="line">		console.log(i)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a[5](); //10</div></pre></td></tr></table></figure>
+<p>使用<code>var</code>声明的变量<code>i</code>是全局变量,在全局范围内有效，也就是说只有一个<code>i</code>，每次循环<code>i</code>的值都会发生改变，数组<code>a</code>中每个成员的<code>console.log(i)</code>其实是同一个<code>i</code>，也就是全局变量<code>i</code>，所以从<code>a[0]</code>~<code>a[9]</code>打出的都是10。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var a = [];</div><div class="line"></div><div class="line">for(let i = 0 ; i&lt; 10 ; i ++)&#123;</div><div class="line">	a[i] = function ()&#123;</div><div class="line">		console.log(i)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a[5](); //5</div></pre></td></tr></table></figure>
+<p>使用<code>let</code>声明的<code>i</code>只在本轮循环有效，每次循环都会重新声明<code>i</code>，每一次<code>console.log()</code>的<code>i</code>都是不同的<code>i</code>，JavaScript引擎会记住上次循环的值，在本次循环会自动基于上次循环继续。</p>
+<h4 id="let没有变量提升"><a href="#let没有变量提升" class="headerlink" title="let没有变量提升"></a>let没有变量提升</h4><p>使用<code>var</code>会产生变量提升，允许变量在未声明之前使用，值为<code>undefined</code>，这很奇怪。使用<code>let</code>不允许未声明先使用，这会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// var 的情况</div><div class="line">console.log(foo); // 输出undefined</div><div class="line">var foo = 2;</div><div class="line"></div><div class="line">// let 的情况</div><div class="line">console.log(bar); // 报错ReferenceError</div><div class="line">let bar = 2;</div></pre></td></tr></table></figure>
+<h4 id="let-不允许重复声明"><a href="#let-不允许重复声明" class="headerlink" title="let 不允许重复声明"></a>let 不允许重复声明</h4><p>在同一个作用域内<code>let</code>不允许重复声明一个变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = 1; </div><div class="line">var a =2 ;</div><div class="line">console.log(a) //2 后声明会覆盖之前的声明</div><div class="line"></div><div class="line"></div><div class="line">let b = 1 ;</div><div class="line">let b =2 ; </div><div class="line"></div><div class="line">console.log(b) // 报错。</div></pre></td></tr></table></figure>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><blockquote>
+<p>const声明一个只读的常量。一旦声明，常量的值就不能改变。const声明的变量不得改变值，这意味着，const一旦声明变量，就必须立即初始化，不能留到以后赋值。</p>
+</blockquote>
+<p>其实<code>const</code>保证的不是变量的值不能改动，而是保证变量指向的那个内存地址不得改动。对于简单类型数据（数值，字符串，布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。但是对于复杂类型的数据（对象，数组），对象指向的内存地址保存的是一个指针，const只能保证这个指针是固定的，而无法保证其内部的数据结构不变。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">const obj = &#123;name:&apos;xiexuan&apos;,age:22&#125; ; </div><div class="line">obj.sex = male;  		//为obj添加一个属性</div><div class="line">console.log(obj.sex) 	// 成功打出  male </div><div class="line"></div><div class="line">const arry = [] ;</div><div class="line">a.push (&apos;xiexuan&apos;);  //虽然array这个变量是常量 ，但是数组本身是可写的。</div><div class="line">a.length = 3;</div></pre></td></tr></table></figure>
+<h2 id="Map-amp-Set"><a href="#Map-amp-Set" class="headerlink" title="Map &amp; Set"></a>Map &amp; Set</h2><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><ul>
+<li>set 类似数组但是成员值都是唯一的，没有重复。</li>
 </ul>
-<p><strong>注意:</strong><br><code>$(document).ready(function(){})</code>可以简写成<code>$(function(){})</code>。</p>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery DOM and Ajax/#more">more >></a>
-        
+
       
 
       
@@ -267,7 +214,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScript ES6</a>
         		</li>
       		
 		</ul>
@@ -276,16 +223,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery DOM and Ajax/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/01/27/Notes for ES6/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/myBlog/2018/01/26/迭代与循环/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">迭代与循环</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -305,706 +311,14 @@
 
 
 
-
-  
-    <article id="post-jQuery" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/jQuery/">jQuery</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/jQuery/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:46:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##jQuery 能做什么？</p>
-<p>jQuery将JavaScript的代码进行了封装，处理了兼容性问题，提供API进行调用,让我们实现功能时不用再为兼容性而困扰，少写了许多代码。<br>jQuery是一个JavaScript函数库，可以方便地：</p>
-<ul>
-<li>选择dom元素</li>
-<li>dom操作</li>
-<li>事件处理</li>
-<li>特效处理</li>
-<li>ajax</li>
-<li>链式操作</li>
-</ul>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/jQuery/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cross-domain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/cross-domain/">cross-domain</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/cross-domain/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是同源策略"><a href="#什么是同源策略" class="headerlink" title="什么是同源策略"></a>什么是同源策略</h2><ul>
-<li><p>浏览器出于安全方面的考虑，只允许与本域下的接口交互。不同源的客户端脚本在没有明确授权的情况下，不能读写对方的资源。</p>
-</li>
-<li><p>同源指的是 一样的协议 ，一样的域名，一样的端口访问，3者要是有一个是不一样的，http请求就是跨域请求。</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/cross-domain/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/cross-domain/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/ajax/">ajax</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/ajax/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:45:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="ajax-是什么？有什么作用？"><a href="#ajax-是什么？有什么作用？" class="headerlink" title="ajax 是什么？有什么作用？"></a>ajax 是什么？有什么作用？</h2><h5 id="传统的HTTP请求"><a href="#传统的HTTP请求" class="headerlink" title="传统的HTTP请求"></a>传统的HTTP请求</h5><ol>
-<li>浏览器向服务器发送请求</li>
-<li>服务器根据浏览器传来数据生成response</li>
-<li>服务器把response返回给浏览器</li>
-<li>浏览器刷新整个页面显示最新数据</li>
-</ol>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/ajax/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ajax JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-setTimeout and Closure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/setTimeout and Closure/">setTimeout and Closure </a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/setTimeout and Closure/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:44:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="下面的代码输出多少？修改代码让-fnArr-i-输出-i。使用-两种以上的方法"><a href="#下面的代码输出多少？修改代码让-fnArr-i-输出-i。使用-两种以上的方法" class="headerlink" title="下面的代码输出多少？修改代码让 fnArr[i]()输出 i。使用 两种以上的方法"></a>下面的代码输出多少？修改代码让 <code>fnArr[i]()</code>输出 <code>i</code>。使用 两种以上的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">   var fnArr = [];</div><div class="line">   for (var i = 0; i &lt; 10; i ++) &#123;</div><div class="line">       fnArr[i] =  function()&#123;</div><div class="line">   	    return i;</div><div class="line">       &#125;;</div><div class="line">   &#125;</div><div class="line">   console.log( fnArr[3]() );  // </div><div class="line">   </div><div class="line">   </div><div class="line">   </div><div class="line">   结果：10</div><div class="line">   </div><div class="line">   因为i是全局变量，所有fnArr[i]()的值都是10。</div><div class="line">   </div><div class="line">   </div><div class="line">   </div><div class="line">   方法一//</div><div class="line">var fnArr = [];</div><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">   	fnArr[i] = function(j) &#123;</div><div class="line">       	return function() &#123;</div><div class="line">           	return j;</div><div class="line">        &#125;;</div><div class="line">    &#125;(i);</div><div class="line">&#125;</div><div class="line">console.log(fnArr[3]());</div><div class="line">   </div><div class="line">   </div><div class="line">   方法二//</div><div class="line">   </div><div class="line">   </div><div class="line"> var fnArr = [];</div><div class="line"> var i;</div><div class="line"> for (i = 0; i &lt; 10; i++) &#123;</div><div class="line">     ! function(i) &#123;</div><div class="line">         fnArr[i] = function() &#123;</div><div class="line">             return i;</div><div class="line">         &#125;;</div><div class="line">     &#125;(i)</div><div class="line"></div><div class="line"> &#125;</div><div class="line"> console.log(fnArr[3]());</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/setTimeout and Closure/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/setTimeout and Closure/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-关于拖延症" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/关于拖延症/">关于拖延症</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/关于拖延症/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:44:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天看了一个关于拖延症的演讲。</p>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/关于拖延症/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">habits</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/关于拖延症/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Events" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/Events/">Events</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/Events/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:43:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="DOM0-事件和DOM2级在事件监听使用方式上有什么区别？"><a href="#DOM0-事件和DOM2级在事件监听使用方式上有什么区别？" class="headerlink" title="DOM0 事件和DOM2级在事件监听使用方式上有什么区别？"></a>DOM0 事件和DOM2级在事件监听使用方式上有什么区别？</h3><ul>
-<li>Dom0级事件处理程序是将一个函数赋值给一个事件处理程序属性，而通过将事件处理程序设置为null删除绑定在元素上的事件处理程序。这种方法无法给一个事件添加多个事件处理程序，后面的程序会覆盖前面的程序。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 添加事件处理程序</div><div class="line">var btn=document.querySelector(&quot;#btn&quot;);</div><div class="line">btn.onclick=function () &#123;</div><div class="line">  alert(this.id);</div><div class="line">&#125;</div><div class="line">// 删除事件处理程序</div><div class="line">btn.onclick=null;</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/Events/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/Events/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/DOM/">DOM</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/DOM/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:43:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Dom对象的innerText和innerHTML有什么区别？"><a href="#Dom对象的innerText和innerHTML有什么区别？" class="headerlink" title="Dom对象的innerText和innerHTML有什么区别？"></a>Dom对象的innerText和innerHTML有什么区别？</h3><ul>
-<li><strong>innerText</strong>：可写属性，返回元素内包含的文本内容，在多层次的时候会按照元素由浅到深的顺序拼接其内容</li>
-<li><strong>innerHTML</strong>：不是返回元素的文本内容，而是返回元素的HTML结构</li>
-</ul>
-<h3 id="elem-children和elem-childNodes的区别？"><a href="#elem-children和elem-childNodes的区别？" class="headerlink" title="elem.children和elem.childNodes的区别？"></a>elem.children和elem.childNodes的区别？</h3><ul>
-<li><strong>elem.children</strong>：返回元素内的 HTML 子元素的集合（即HTMLCollection）</li>
-<li><strong>elem.childNodes</strong>：返回元素内的子节点列表（包括空白文本节点，即NodeList）</li>
-</ul>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/DOM/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/DOM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RegExp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/RegExp/">RegExp</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/RegExp/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:42:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="题目1：-d，-w-s-a-zA-Z0-9-b-x-3-分别是什么"><a href="#题目1：-d，-w-s-a-zA-Z0-9-b-x-3-分别是什么" class="headerlink" title="题目1： \d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^,$分别是什么?"></a>题目1： \d，\w,\s,[a-zA-Z0-9],\b,.,*,+,?,x{3},^,$分别是什么?</h3><table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\d</td>
-<td>一个数字</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>一个单词字符 （大小写字符，数字，下划线）</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>一个空白字符</td>
-</tr>
-<tr>
-<td>[a-zA-Z0-9]</td>
-<td>[]范围内任意一个字符</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>单词边界</td>
-</tr>
-<tr>
-<td>.</td>
-<td>任意字符除了\n \r</td>
-</tr>
-<tr>
-<td>*</td>
-<td>量词，出现零次或多次（即无数次）</td>
-</tr>
-<tr>
-<td>+</td>
-<td>量词，出现一次或多次（即至少出现一次）</td>
-</tr>
-<tr>
-<td>?</td>
-<td>量词，出现零次或一次（即最多出现一次）</td>
-</tr>
-<tr>
-<td>x{3}</td>
-<td>x出现3次</td>
-</tr>
-<tr>
-<td>^</td>
-<td>放在中括号里面[^]表示取反，不放表示以此开头</td>
-</tr>
-<tr>
-<td>$</td>
-<td>以xxx结尾</td>
-</tr>
-</tbody>
-</table>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/RegExp/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/RegExp/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/myBlog/">&laquo; Prev</a><a class="page-number" href="/myBlog/">1</a><span class="page-number current">2</span><a class="page-number" href="/myBlog/page/3/">3</a><a class="page-number" href="/myBlog/page/4/">4</a><a class="extend next" rel="next" href="/myBlog/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1027,8 +341,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

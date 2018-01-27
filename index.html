@@ -149,6 +149,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Notes for ES6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2018/01/27/Notes for ES6/">Notes for ES6</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2018/01/27/Notes for ES6/" class="archive-article-date">
+  	<time datetime="2018-01-27T14:27:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="let-amp-const"><a href="#let-amp-const" class="headerlink" title="let &amp; const"></a>let &amp; const</h2><h3 id="为啥需要let和const？"><a href="#为啥需要let和const？" class="headerlink" title="为啥需要let和const？"></a>为啥需要let和const？</h3><blockquote>
+<p>因为JavaScript没有块级作用域，只有函数作用域。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var s = 1;</div><div class="line">var another = function ()&#123;</div><div class="line">	var s = 2 ;</div><div class="line">&#125;</div><div class="line">another();</div><div class="line">console.log(s) //1 </div><div class="line"></div><div class="line">//因为有函数作用域，函数内部的赋值不会影响外部的变量。</div><div class="line"></div><div class="line">--------------------------------------------</div><div class="line"></div><div class="line"></div><div class="line">var s =1 ;</div><div class="line">if(true)&#123;</div><div class="line">	var s =2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(s); //2</div><div class="line"></div><div class="line">//if语句没有块级作用域，所以会改变外面s的值</div></pre></td></tr></table></figure>
+<p><em>这很蛋疼!</em></p>
+        
+          <a class="article-more-a" href="/myBlog/2018/01/27/Notes for ES6/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JavaScript ES6</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2018/01/27/Notes for ES6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-迭代与循环" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -832,82 +912,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/myBlog/2017/10/09/Carousel/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Lazy Load" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/Lazy Load/">Lazy Load</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/Lazy Load/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:47:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数-isVisible实现"><a href="#如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数-isVisible实现" class="headerlink" title="如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数 isVisible实现"></a>如何判断一个元素是否出现在窗口可视范围（浏览器的上边缘和下边缘之间，肉眼可视）。写一个函数 isVisible实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function isVisible($node)&#123;</div><div class="line">       var scrollTop = $(window).scrollTop();</div><div class="line">       var windowHeight = $(window).height();</div><div class="line">       var offsetTop = $node.offset().top;</div><div class="line">       if (offsetTop &lt; scrollTop + windowHeight &amp;&amp; offsetTop &gt; scrollTop) &#123;</div><div class="line">           return true;</div><div class="line">       &#125;</div><div class="line">       return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/Lazy Load/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/Lazy Load/">展开全文 >></a>
         </p>
       
 
