@@ -149,168 +149,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Events" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/Events/">Events</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/Events/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:43:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="DOM0-事件和DOM2级在事件监听使用方式上有什么区别？"><a href="#DOM0-事件和DOM2级在事件监听使用方式上有什么区别？" class="headerlink" title="DOM0 事件和DOM2级在事件监听使用方式上有什么区别？"></a>DOM0 事件和DOM2级在事件监听使用方式上有什么区别？</h3><ul>
-<li>Dom0级事件处理程序是将一个函数赋值给一个事件处理程序属性，而通过将事件处理程序设置为null删除绑定在元素上的事件处理程序。这种方法无法给一个事件添加多个事件处理程序，后面的程序会覆盖前面的程序。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 添加事件处理程序</div><div class="line">var btn=document.querySelector(&quot;#btn&quot;);</div><div class="line">btn.onclick=function () &#123;</div><div class="line">  alert(this.id);</div><div class="line">&#125;</div><div class="line">// 删除事件处理程序</div><div class="line">btn.onclick=null;</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/Events/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/Events/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2017/10/09/DOM/">DOM</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2017/10/09/DOM/" class="archive-article-date">
-  	<time datetime="2017-10-08T19:43:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Dom对象的innerText和innerHTML有什么区别？"><a href="#Dom对象的innerText和innerHTML有什么区别？" class="headerlink" title="Dom对象的innerText和innerHTML有什么区别？"></a>Dom对象的innerText和innerHTML有什么区别？</h3><ul>
-<li><strong>innerText</strong>：可写属性，返回元素内包含的文本内容，在多层次的时候会按照元素由浅到深的顺序拼接其内容</li>
-<li><strong>innerHTML</strong>：不是返回元素的文本内容，而是返回元素的HTML结构</li>
-</ul>
-<h3 id="elem-children和elem-childNodes的区别？"><a href="#elem-children和elem-childNodes的区别？" class="headerlink" title="elem.children和elem.childNodes的区别？"></a>elem.children和elem.childNodes的区别？</h3><ul>
-<li><strong>elem.children</strong>：返回元素内的 HTML 子元素的集合（即HTMLCollection）</li>
-<li><strong>elem.childNodes</strong>：返回元素内的子节点列表（包括空白文本节点，即NodeList）</li>
-</ul>
-        
-          <a class="article-more-a" href="/myBlog/2017/10/09/DOM/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2017/10/09/DOM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-RegExp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -971,6 +809,174 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/myBlog/2017/10/09/CSS-Compatibility/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CSS3-Flex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/CSS3-Flex/">CSS3 Flex</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/CSS3-Flex/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:36:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><h5 id="父元素"><a href="#父元素" class="headerlink" title="父元素"></a>父元素</h5><ul>
+<li>flex-direction  排列方向</li>
+<li>flex-wrap  换行</li>
+<li>flex-flow  排列方式-换行 （简写）</li>
+<li>justify-content  主轴对齐方式</li>
+<li>align-items  侧轴对齐方式 </li>
+</ul>
+        
+          <a class="article-more-a" href="/myBlog/2017/10/09/CSS3-Flex/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS CSS3 flex</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/CSS3-Flex/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CSS-Float-BFC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/CSS-Float-BFC/">CSS Float (BFC)</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/CSS-Float-BFC/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:36:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="浮动元素有什么特征？对父容器、其他浮动元素、普通元素、文字分别有什么影响"><a href="#浮动元素有什么特征？对父容器、其他浮动元素、普通元素、文字分别有什么影响" class="headerlink" title="浮动元素有什么特征？对父容器、其他浮动元素、普通元素、文字分别有什么影响?"></a>浮动元素有什么特征？对父容器、其他浮动元素、普通元素、文字分别有什么影响?</h3><p>浮动元素脱离了普通文档流，文档的普通流中的元素表现的就像浮动元素不存在一样。<br>浮动的框可以向左向右移动，直到它的外边缘碰到包含框或者另一个浮动的边缘为止。</p>
+<ul>
+<li><p>对父容器的影响：如果父容器的子元素都是浮动元素，那么父容器失去高度。</p>
+</li>
+<li><p>对其他浮动元素的影响：如果水平空间不够会将浮动元素排到下一行，如果上一行的元素大小不一，被排到下一行的元素可能会被卡住。</p>
+</li>
+<li><p>对普通元素的影响：因为普通元素脱离了文档流，普通文档流中的元素表现得就像浮动元素不存在一样。</p>
+</li>
+<li><p>对文字的影响：文字会感应到浮动元素的存在并产生文字浮动效果。 </p>
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/myBlog/2017/10/09/CSS-Float-BFC/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/CSS-Float-BFC/">展开全文 >></a>
         </p>
       
 
