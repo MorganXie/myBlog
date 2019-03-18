@@ -149,82 +149,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Vim" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myBlog/2018/02/24/Vim/">Vim</a>
-    </h1>
-  
-
-        
-        <a href="/myBlog/2018/02/24/Vim/" class="archive-article-date">
-  	<time datetime="2018-02-24T12:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><ol>
-<li>Linux 自带</li>
-<li>不需要鼠标,速度快</li>
-<li></li>
-</ol>
-<h1 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h1><ul>
-<li><p>退出</p>
-<ol>
-<li><code>ESC</code> </li>
-<li>依次出入<code>:q!</code></li>
-</ol>
-</li>
-<li></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/myBlog/2018/02/24/Vim/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Notes for ES6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -905,6 +829,89 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/myBlog/2017/10/09/OOP-and-prototype/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Carousel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/myBlog/2017/10/09/Carousel/">Carousel</a>
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/10/09/Carousel/" class="archive-article-date">
+  	<time datetime="2017-10-08T19:48:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="轮播的实现原理是怎样的？如果让你来实现，你会抽象出哪些函数-or接口-供使用？（比如-play-）"><a href="#轮播的实现原理是怎样的？如果让你来实现，你会抽象出哪些函数-or接口-供使用？（比如-play-）" class="headerlink" title="轮播的实现原理是怎样的？如果让你来实现，你会抽象出哪些函数(or接口)供使用？（比如 play()）"></a>轮播的实现原理是怎样的？如果让你来实现，你会抽象出哪些函数(or接口)供使用？（比如 play()）</h3><h4 id="左右滚动无限循环轮播的实现"><a href="#左右滚动无限循环轮播的实现" class="headerlink" title="左右滚动无限循环轮播的实现"></a>左右滚动无限循环轮播的实现</h4><p><strong>原理</strong>：</p>
+<ol>
+<li><p>是将所有图片的水平排列，但是视口只有一张图片的宽度，超出范围的图片隐藏，切换图片的时候实际上是包含全部水平图片的大盒子在移动。</p>
+</li>
+<li><p>在图片列表开头和结尾分别克隆最后一张图和第一张图。图片的切换，就是改变绝对定位元素的left值。</p>
+</li>
+<li>当我们展示到最后一张图往后点或者第一张图往前点的时候，会先展示我们之前克隆好的图，同时把元素回归到正确的位置。即真正的第一张或者最后一张的位置。</li>
+</ol>
+        
+          <a class="article-more-a" href="/myBlog/2017/10/09/Carousel/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/myBlog/2017/10/09/Carousel/">展开全文 >></a>
         </p>
       
 
