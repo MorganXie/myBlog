@@ -191,7 +191,7 @@
 <li>一个请求获取一个模块<br>（requirejs 每一个require的模块，对应的都是一条网络请求）</li>
 </ol>
 <p>优点：只传送所需的模块<br>缺点：许多请求意味着很多开销<br>缺点：因为请求的延迟，程序启动缓慢</p>
-<ol>
+<ol start="2">
 <li>一个请求获取所有模块<br>（r.js 把所有的模块都打包成一个网络请求）</li>
 </ol>
 <p>优点：请求开销减少，延迟小<br>缺点：暂时并不所需的模块也被传送<br>webpack将请求的模块组拆分成许多小块。<br>被复用的模块组被一次请求最开始就获取，最初不需要的模块的块则可以按需加载。 拥有初始下载量小，并在应用程序请求时按要求下载代码的优势。</p>
@@ -347,7 +347,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 解某人
+    		&copy; 2019 解某人
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

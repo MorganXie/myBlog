@@ -207,7 +207,7 @@
 <li>访问一个对象的属性时，如果对象有这个属性，就获取到了，如果没有这个属性，则从<code>__proto__</code>里面去找，如果还是没有找到，则从原型对象prototype里的proto中去寻找。</li>
 </ol>
 <h3 id="画出如下代码的原型图"><a href="#画出如下代码的原型图" class="headerlink" title="画出如下代码的原型图"></a>画出如下代码的原型图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function People (name)&#123;</div><div class="line">  this.name = name;</div><div class="line">  this.sayName = function()&#123;</div><div class="line">    console.log(&apos;my name is:&apos; + this.name);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">People.prototype.walk = function()&#123;</div><div class="line">  console.log(this.name + &apos; is walking&apos;);  </div><div class="line">&#125;</div><div class="line"></div><div class="line">var p1 = new People(&apos;饥人谷&apos;);</div><div class="line">var p2 = new People(&apos;前端&apos;);</div></pre></td></tr></table></figure>
-<p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1filloz3jtdj20k70grjro.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/d6c04639gy1filloz3jtdj20k70grjro.jpg" alt></p>
 <h3 id="创建一个-Car-对象，拥有属性name、color、status；拥有方法run，stop，getStatus"><a href="#创建一个-Car-对象，拥有属性name、color、status；拥有方法run，stop，getStatus" class="headerlink" title="创建一个 Car 对象，拥有属性name、color、status；拥有方法run，stop，getStatus"></a>创建一个 Car 对象，拥有属性name、color、status；拥有方法run，stop，getStatus</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">function Car (name, color, status)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.color = color;</div><div class="line">    this.status = status;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Car.prototype.run = function() &#123;</div><div class="line">    this.status = &quot;running&quot;;</div><div class="line">    console.log(this.status);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.stop = function() &#123;</div><div class="line">    this.status = &quot;stop&quot;;</div><div class="line">    console.log(this.status);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Car.prototype.getStatus = function() &#123;</div><div class="line">    console.log(this.status);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">var p1 = new Car(&quot;宝马&quot;,&quot;black&quot;,&quot;run&quot;);</div><div class="line">p1.run();</div><div class="line">p1.stop();</div><div class="line">p1.getStatus();</div></pre></td></tr></table></figure>
 <h3 id="创建一个-GoTop-对象，当-new-一个-GotTop-对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法"><a href="#创建一个-GoTop-对象，当-new-一个-GotTop-对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法" class="headerlink" title="创建一个 GoTop 对象，当 new 一个 GotTop 对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法"></a>创建一个 GoTop 对象，当 new 一个 GotTop 对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法</h3><ol>
 <li><code>ct</code>属性，GoTop 对应的 DOM 元素的容器</li>
@@ -216,7 +216,7 @@
 <li><code>createNode</code> 方法， 用于在容器内创建节点</li>
 </ol>
 <p><a href="http://js.jirengu.com/dulax/3/edit?css,js,console,output" target="_blank" rel="external">代码</a></p>
-<h3 id="使用木桶布局实现一个图片墙"><a href="#使用木桶布局实现一个图片墙" class="headerlink" title="使用木桶布局实现一个图片墙"></a>使用木桶布局实现一个图片墙</h3><p>效果图<br><img src="http://ww1.sinaimg.cn/large/d6c04639gy1filndcqddug20gn0a5x6s.gif" alt=""></p>
+<h3 id="使用木桶布局实现一个图片墙"><a href="#使用木桶布局实现一个图片墙" class="headerlink" title="使用木桶布局实现一个图片墙"></a>使用木桶布局实现一个图片墙</h3><p>效果图<br><img src="http://ww1.sinaimg.cn/large/d6c04639gy1filndcqddug20gn0a5x6s.gif" alt></p>
 <p><a href="https://github.com/MorganXie/Demos/blob/master/Barrels-Layout/Barrels-Layout.html" target="_blank" rel="external">代码</a></p>
 
       
@@ -355,7 +355,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 解某人
+    		&copy; 2019 解某人
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
